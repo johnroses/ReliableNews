@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+           
+    
+    <!--bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="/WEB-INF/jdbc.properties" />
+
+--><bean id="dataSource"
+    class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+    p:driverClassName="com.mysql.jdbc.Driver"
+    p:url="jdbc:mysql://localhost:3306/my_schema"
+    p:username="root"
+    p:password="system"/> 
+    <!--<mvc:annotation-driven />-->
+     <!--<bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping" />-->
+<!-- https://stackoverflow.com/questions/20440276/error-when-adding-mvcannotation-driven-in-applicationcontext-xml
+     
+     says, mvc component not declared in applicationContext.xm;
+     
+     
+In the web.xml file you are specifying that Java configuration will be used to setup the MVC components, 
+however the MVC components are attempted to be setup within the applicationContext.xml file.
+
+The ContextLoaderListener in web.xml is setup to launch the /WEB-INF/applicationContext.xml configuration file. 
+The container setup by applicationContext.xml should not include the MVC components
+      but should be used for registering beans outside of the MVC scope such as those for data persistence.
+
+If you truly want to use Java Configuration to setup the Spring MVC components you must move all of the Spring MVC components established in the 
+    applicationContext.xml file to a Java class annotated with @Configuration and translate the XML beans to their appropriate configurations in Java.-->
+    <!--<bean class="org.springframework.web.servlet.mvc.annotation. AnnotationMethodHandlerAdapter" />-->
+
+    <!-- ADD PERSISTENCE SUPPORT HERE (jpa, hibernate, etc) -->
+
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        
+        <property name="dataSource" ref="dataSource" />
+        <!--    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.annotation.AnnotationSessionFactoryBean">-->
+
+        <!--<property name="configLocation" value="classpath:hibernate.cfg.xml"/>   
+        -->        
+        <!--        <property name="annotatedClasses">
+            <list>
+                <value>com.deligent.loginDTO.UserDTO</value>
+            </list>
+        </property>-->
+        <!--        <property name="mappingResources">
+            <list>
+                <value>hibernate.hbm.xml</value>
+            </list>
+        </property>-->
+        
+        <!--
+        <bean id="sessionFactory" scope="singleton"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+    </bean>
+        -->       
+        
+        <property name="packagesToScan" value="com.deligent"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">false</prop>
+                <prop key="hibernate.generate_statistics">true</prop><!--
+                
+-->             <!--   <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/my_schema</prop>
+                <prop key="hibernate.connection.username">root</prop>
+                <prop key="hibernate.connection.password">system</prop>
+-->            </props>
+        </property>
+        <!--<mapping resource="com/deligent/hibernate.hbm.xml"/>-->
+    </bean>
+    <!-- Transaction -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+    
+
+    <tx:annotation-driven transaction-manager="transactionManager" />             
+        
+    
+</beans>
