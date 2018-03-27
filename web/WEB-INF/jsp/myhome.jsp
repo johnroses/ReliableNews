@@ -42,7 +42,7 @@ for (var i = 0; i <= buttonsCount; i += 1) {
 </script>
 
 
-<script>
+<!--<script>
     function findParentNode(parentName, childObj) {
 
         var testObj = childObj.parentNode;
@@ -64,7 +64,7 @@ for (var i = 0; i <= buttonsCount; i += 1) {
         alert('Finally found ' + testObj.getAttribute('name') + ' after going up ' + count + ' level(s) through the DOM tree');
 
     }
-</script>
+</script>-->
 <!--<script>
 
 
@@ -219,7 +219,7 @@ c[0].style.display="flex";
 <script>
             $(document).ready(function () {
                       //$('#para').click(function(){
-                      $('#but').click(function(){
+                      $('#tww').click(function(){
          //function PO(){
          //alert("post click");
   //       var da=$(".u-linkComplex-target").text();
@@ -248,6 +248,13 @@ var po=$("#tweet-box-home-timeline").text();
     //pName["post_msg"]=po;
     //pName["userid"]=x1;
     var uid="x1";
+    var len1=x1.length;
+    console.log(len1);
+    console.log(x1.slice(1,len1));
+    var len2=po.length;
+    console.log(len2);
+    
+    console.log(po.slice(1,len2));
     var search = {"userid": "john",
                         "post_msg": "rose"};
 
