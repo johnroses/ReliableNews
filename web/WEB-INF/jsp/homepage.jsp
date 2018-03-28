@@ -14,7 +14,7 @@
         <link rel="stylesheet" class="moreCSSBundles" href="css/twitter_more_1.bundle.css">
         <link rel="stylesheet" class="moreCSSBundles" href="css/twitter_more_2.bundle.css">
 
-        <title>Home Page</title>
+        <title>JSP Page</title>
 
 
 
@@ -122,6 +122,53 @@
                                     </span>
                                     <div class="StaticLoggedOutHomePage-helpText"></div>
                                 </div>
+
+<!-- field added-->
+
+                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-username">
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input username-input" autocomplete="off" name="user[username]" placeholder="User Name">
+                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
+                                        <span class="Icon Icon--close"></span>
+                                        <span class="Icon Icon--check"></span>
+                                    </span>
+                
+
+</div>
+
+
+                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-firstName">
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input firstName-input" autocomplete="off" name="user[firstName]" placeholder="firstName">
+                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
+                                        <span class="Icon Icon--close"></span>
+                                        <span class="Icon Icon--check"></span>
+                                    </span>
+                
+
+</div>
+
+                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-lastName">
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="user[lastName]" placeholder="lastName">
+                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
+                                        <span class="Icon Icon--close"></span>
+                                        <span class="Icon Icon--check"></span>
+                                    </span>
+                
+
+</div>
+
+                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-lastName">
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="user[lastName]" placeholder="lastName">
+                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
+                                        <span class="Icon Icon--close"></span>
+                                        <span class="Icon Icon--check"></span>
+                                    </span>
+                
+
+</div>
+
+
+<!--finished -->
+
                                 <input type="hidden" value="" name="context">
                                 <input type="hidden" value="862ca8c6b3c44735da4b6c756118174e9c5c8f6e" name="authenticity_token">
                                 <div class="StaticLoggedOutHomePage-getStartedBlock">
