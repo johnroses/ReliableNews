@@ -272,7 +272,46 @@ var po=$("#tweet-box-home-timeline").text();
     var len2=po.length;
     console.log(len2);
     
+     
+    
     console.log(po.slice(1,len2));
+    
+    var position=po.indexOf("#");
+    console.log(position);
+    var ff=po.replace("#"," ");
+    console.log("new string");
+    console.log(ff);
+    var i=position+1;
+    for(;i<len2;i++)
+    {
+        if(po.charAt(i)==' ')
+        {
+            console.log("BREAK");
+            break;
+        }
+            
+        console.log(po.charAt(i));
+    }
+    position=ff.indexOf("#");
+    i=position+1;
+    for(;i<len2;i++)
+    {
+        if(po.charAt(i)==' ')
+        {
+            console.log("BREAK");
+            break;
+        }
+            
+        console.log(po.charAt(i));
+    }
+    ff=ff.replace("#"," ");
+    console.log("2ND New string");
+    console.log(ff);
+    console.log(ff.indexOf("#"));
+//    var str12 = "Please visit Microsoft!";
+//    var n1 = str12.replace("Microsoft", "W3Schools");
+//    console.log(n1);//returns new string
+    
     var search = {"userid": "john",
                         "post_msg": "rose"};
 
