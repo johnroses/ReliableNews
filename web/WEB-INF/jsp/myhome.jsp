@@ -589,7 +589,7 @@ di2.appendChild(di9);
                 di2.className = "content";
                 di3.className ="stream-item-header";
                 a1.className="account-group js-account-group js-action-profile js-user-profile-link js-nav";
-                img1.src="/image/2600.j";
+                img1.src="/image/2600.png";
                 span1.className= "FullNameGroup";
                 span2.className= "username u-dir u-textTruncate";
                 strong1.className= "fullname show-popup-with-id u-textTruncate ";
