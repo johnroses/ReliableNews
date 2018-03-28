@@ -220,6 +220,24 @@ c[0].style.display="flex";
             $(document).ready(function () {
                       //$('#para').click(function(){
                       $('#tww').click(function(){
+                          
+                          var d=new Date();
+                          console.log(d.toLocaleTimeString());
+                          console.log(d.toLocaleString());
+                          console.log("date");
+                          console.log(d.toLocaleDateString());
+                          
+                          
+                          var str1 = "Please visit Microsoft and Microsoft!";
+                            var n = str1.replace("Microsoft", "W3Schools");
+                            console.log(str1.length);
+                                console.log(str1.search("and"));
+                                var txt = "a,b,c,d,e";   // String
+                            txt.split(",");          // Split on commas
+                            txt.split(" ");          // Split on spaces
+                            txt.split("|");          // Split on pipe 
+                            
+                            console.log(txt);
          //function PO(){
          //alert("post click");
   //       var da=$(".u-linkComplex-target").text();
@@ -1380,7 +1398,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                 <ul class="nav right-actions">
                                     <li class="me dropdown session js-session" data-global-action="t1me" id="user-dropdown">
                                         <a href="https://twitter.com/settings/account" class="btn js-tooltip settings dropdown-toggle js-dropdown-toggle" id="user-dropdown-toggle" title="Profile and settings" data-placement="bottom" rel="noopener" role="button" aria-haspopup="true">
-                                            <img class="Avatar Avatar--size32" src="ADMvYXZc_bigger.jpg" alt="Profile and settings" data-user-id="136245309">
+                                            <img class="Avatar Avatar--size32" src="image/ADMvYXZc_bigger.jpg" alt="Profile and settings" data-user-id="136245309">
                                         </a>
                                         <div class="DashUserDropdown dropdown-menu dropdown-menu--rightAlign is-forceRight is-autoCentered">
                                             <div class="dropdown-caret">
@@ -2133,7 +2151,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
                     <div class="AdaptiveMedia-singlePhoto" style="padding-top: calc(0.6650390625 * 100% - 0.5px);">
                         <div class="AdaptiveMedia-photoContainer js-adaptive-photo " data-image-url="https://pbs.twimg.com/media/DYIHppoX0AE2QjF.jpg" data-element-context="platform_photo_card" style="background-color:rgba(37,35,38,1.0);" data-dominant-color="[37,35,38]">
                             
-                            <img data-aria-label-part="" src="DYIHppoX0AE2QjF.jpg" alt="" style="width: 100%; top: -0px;">
+                            <img data-aria-label-part="" src="image/DYIHppoX0AE2QjF.jpg" alt="" style="width: 100%; top: -0px;">
                         </div>
 
 
