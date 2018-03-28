@@ -14,7 +14,7 @@
         <link rel="stylesheet" class="moreCSSBundles" href="css/twitter_more_1.bundle.css">
         <link rel="stylesheet" class="moreCSSBundles" href="css/twitter_more_2.bundle.css">
 
-        <title>JSP Page</title>
+        <title>Home Page</title>
 
 
 
