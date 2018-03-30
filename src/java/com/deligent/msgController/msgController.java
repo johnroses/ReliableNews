@@ -28,17 +28,15 @@ public class msgController extends MultiActionController{
     
     @RequestMapping("/wall")
     public ModelAndView addMsg(@ModelAttribute("msg") msgDTO msg) throws IOException {
-        //List<Employee> listEmployee = employeeService.getAllEmployees();
-        //model.addObject("listEmployee", listEmployee);
-        //model.setViewName("index");
-        msgSer.mymsg(msg);
+        
+       // msgSer.mymsg(msg);
         System.out.println("wall controller ================");
         ModelAndView model = new ModelAndView();
-        //model.addObject("ser",ser);
-        //List<logDTO> listUser=loginservice.view(usr);
+        List<msgDTO> listMsg=msgSer.viewmsg(msg);
               
-        //model.addObject("listUser", listUser);
-	model.setViewName("wall");
+        model.addObject("listMsg", listMsg);
+        //model.setViewName("wall");
+        model.setViewName("myhome");
 	//return model;
         //System.out.println("");      
         return model;
@@ -47,9 +45,7 @@ public class msgController extends MultiActionController{
     
     @RequestMapping("/msgwall")
     public ModelAndView Msg(@ModelAttribute("msg") msgDTO msg) throws IOException {
-        //List<Employee> listEmployee = employeeService.getAllEmployees();
-        //model.addObject("listEmployee", listEmployee);
-        //model.setViewName("index");
+        
         msgSer.mymsg(msg);
         ModelAndView model = new ModelAndView();
         //model.addObject("ser",ser);
@@ -57,8 +53,58 @@ public class msgController extends MultiActionController{
               
         model.addObject("listMsg", listMsg);
 	model.setViewName("wall");
+        //model.setViewName("testing");
 	//return model;
         //System.out.println("");      
+        return model;
+    }
+    
+    @RequestMapping("/testing")
+    public ModelAndView TMsg(@ModelAttribute("msg") msgDTO msg) throws IOException{
+          ModelAndView model = new ModelAndView();
+        List<msgDTO> listMsg=msgSer.viewmsg(msg);
+              
+        model.addObject("listMsg", listMsg);
+        //model.setViewName("wall");
+        model.setViewName("myhome");
+	//return model;
+        //System.out.println("");      
+        return model;
+        
+    }
+    
+    @RequestMapping("/testing1")
+    public ModelAndView TMsg1() throws IOException{
+          ModelAndView model = new ModelAndView();
+        List<msgDTO> listMsg=msgSer.feedmsg();
+              
+        model.addObject("listMsg", listMsg);
+        //model.setViewName("wall");
+        model.setViewName("myhome");
+	//return model;
+        //System.out.println("");      
+        return model;
+        
+    }
+
+    
+    @RequestMapping("/ff")
+    public ModelAndView TestMsg(@ModelAttribute("msg") msgDTO msg) throws IOException{
+//    public ModelAndView TestMsg(@ModelAttribute("msg") msgDTO msg) {
+        
+        msgSer.mymsg(msg);//uncomment to insert
+        ModelAndView model = new ModelAndView();
+        
+        
+        List<msgDTO> listMsg=msgSer.viewmsg(msg);
+        //List<msgDTO> listMsg=msgSer.feedmsg();
+              System.out.println(" testing method"+listMsg);
+              System.out.println(" size "+listMsg.size());
+              
+        model.addObject("listMsg", listMsg);
+	//model.setViewName("wall");
+        model.setViewName("testing");
+	
         return model;
     }
     
