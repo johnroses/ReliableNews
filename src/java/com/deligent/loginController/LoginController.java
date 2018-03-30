@@ -9,6 +9,7 @@ import com.deligent.LOGIN.logDTO;
 import com.deligent.log.myDTO;
 //import com.deligent.loginDT.UserDtO;
 import com.deligent.loginService.LoginService;
+import com.deligent.msg.msgDTO;
 import com.deligent.postDTO.PostDTO;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -42,7 +43,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
+import com.deligent.msgService.msgService;
 /**
  *
  * @author Deligent
@@ -53,6 +54,9 @@ public class LoginController extends MultiActionController {
 
     @Autowired
     private LoginService loginservice;
+    
+    @Autowired
+    private msgService msgSer;
 //public class LoginController {    
 
     public LoginController() {
@@ -190,7 +194,15 @@ public class LoginController extends MultiActionController {
             return mv;
         }
         System.out.println(" output" + x);
-        mv.setViewName("myhome");
+        
+        //contro jumps to msg 
+        
+        List<msgDTO> listMsg=msgSer.feedmsg();
+              
+        mv.addObject("listMsg", listMsg);
+        //model.setViewName("wall");
+        //mv.setViewName("myhome");
+        mv.setViewName("myfeeds");
         //mv.setViewName("login");
         return mv;
 
@@ -209,7 +221,7 @@ public class LoginController extends MultiActionController {
 
     @RequestMapping("/homepage")
     public ModelAndView homepage(@ModelAttribute("usr") logDTO usr) throws IOException {
-        ModelAndView mv = new ModelAndView("john");
+        ModelAndView mv = new ModelAndView("homepage");
         return mv;
     }
 
