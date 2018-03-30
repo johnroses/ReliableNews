@@ -78,5 +78,33 @@ public class msgDAO {
          return mymsg;
         
     }
+    
+    
+     @Transactional
+    public List<msgDTO> feedmsg() {
+        Session session=sessionFactory.openSession();
+        Transaction tx=null;
+        List<msgDTO> mymsg=null;
+         try{
+                tx=session.beginTransaction();
+                                   
+                //user1 = session.createCriteria("from UserDtO").list();
+                mymsg = session.createQuery("from msgDTO").list();
+               // Iterator next=(Iterator) user1;
+               int n=mymsg.size();
+               System.out.println("n "+n);
+//                while(n>=0){
+//                    System.out.println(" val"+user1.get(n));
+//                    n--;
+//                }
+                tx.commit();
+        }catch(HibernateException e){
+            e.printStackTrace();
+        }
+         //user1=null;
+         return mymsg;
+        
+    }
+
 
 }
