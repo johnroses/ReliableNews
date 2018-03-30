@@ -35,4 +35,11 @@ public class msgService {
          
     }
     
+    @Transactional
+    public List<msgDTO> feedmsg() {
+        return msgDao.feedmsg();
+         
+    }
+    
+    
 }
