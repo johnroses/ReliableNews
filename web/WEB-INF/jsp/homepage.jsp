@@ -14,7 +14,7 @@
         <link rel="stylesheet" class="moreCSSBundles" href="css/twitter_more_1.bundle.css">
         <link rel="stylesheet" class="moreCSSBundles" href="css/twitter_more_2.bundle.css">
 
-        <title>JSP Page</title>
+        <title>homepage</title>
 
 
 
@@ -98,13 +98,17 @@
                             </div>
                             <h1 class="StaticLoggedOutHomePage-signupTitle">See what’s happening in the world right now</h1>
                             <h2 class="StaticLoggedOutHomePage-signupSubtitle">Join Twitter today.</h2>
-                            <form class="StaticLoggedOutHomePage-signupForm" method="POST" action="/account/create">
+                            <form class="StaticLoggedOutHomePage-signupForm" method="POST" action="gologin.htm">
                                 <input type="hidden" value="862ca8c6b3c44735da4b6c756118174e9c5c8f6e" name="authenticity_token" />
                                 <input type="hidden" name="signup_ui_metrics" autocomplete="off">
                                 <input type="hidden" name="m_metrics" autocomplete="off">
                                 <input type="hidden" name="d_metrics" autocomplete="off">
+                                
+                                <input type="hidden" path="id" />
+                                
                                 <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-phoneEmail">
-                                    <input type="text" class="StaticLoggedOutHomePage-input text-input email-input" autocomplete="off" name="user[email]" placeholder="Phone or email">
+<!--                                    <input type="text" class="StaticLoggedOutHomePage-input text-input email-input" autocomplete="off" name="user[email]" placeholder="Phone or email">-->
+                                        <input type="text" class="StaticLoggedOutHomePage-input text-input email-input" autocomplete="off" name="userid" placeholder="userid">
                                     <span class="StaticLoggedOutHomePage-validationIconContainer">
                                         <span class="Icon Icon--close"></span>
                                         <span class="Icon Icon--check"></span>
@@ -114,8 +118,51 @@
                                         We will text a verification code to this number. Standard SMS, call, or data fees may apply.
                                     </div>
                                 </div>
+                                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-username">
+<!--                                    <input type="text" class="StaticLoggedOutHomePage-input text-input username-input" autocomplete="off" name="user[username]" placeholder="User Name">-->
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input username-input" autocomplete="off" name="username" placeholder="User Name">
+                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
+                                        <span class="Icon Icon--close"></span>
+                                        <span class="Icon Icon--check"></span>
+                                    </span>
+                
+
+</div>
+                                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-firstName">
+<!--                                    <input type="text" class="StaticLoggedOutHomePage-input text-input firstName-input" autocomplete="off" name="user[firstName]" placeholder="firstName">-->
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input firstName-input" autocomplete="off" name="firstName" placeholder="firstName">
+                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
+                                        <span class="Icon Icon--close"></span>
+                                        <span class="Icon Icon--check"></span>
+                                    </span>
+                
+
+</div>
+
+                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-lastName">
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="lastName" placeholder="lastName">
+                                    <!--<input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="user[lastName]" placeholder="lastName">-->
+                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
+                                        <span class="Icon Icon--close"></span>
+                                        <span class="Icon Icon--check"></span>
+                                    </span>
+                
+
+</div>
+                                
+                                          <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-gender">
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input gender-input" autocomplete="off" name="gender" placeholder="gender">
+                                    <!--<input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="user[lastName]" placeholder="lastName">-->
+                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
+                                        <span class="Icon Icon--close"></span>
+                                        <span class="Icon Icon--check"></span>
+                                    </span>
+                
+
+</div>
                                 <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-password">
-                                    <input type="password" class="StaticLoggedOutHomePage-input text-input" name="user[user_password]" placeholder="Password">
+<!--                                    <input type="password" class="StaticLoggedOutHomePage-input text-input" name="user[user_password]" placeholder="Password">-->
+                                        <input type="password" class="StaticLoggedOutHomePage-input text-input" name="password" placeholder="Password">
                                     <span class="StaticLoggedOutHomePage-validationIconContainer">
                                         <span class="Icon Icon--close"></span>
                                         <span class="Icon Icon--check"></span>
@@ -125,8 +172,14 @@
 
 <!-- field added-->
 
-                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-username">
-                                    <input type="text" class="StaticLoggedOutHomePage-input text-input username-input" autocomplete="off" name="user[username]" placeholder="User Name">
+                
+
+
+                
+
+                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-dob">
+                                    <input type="text" class="StaticLoggedOutHomePage-input text-input dob-input" autocomplete="off" name="dob" placeholder="DOB">
+<!--                                    <input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="user[lastName]" placeholder="lastName">-->
                                     <span class="StaticLoggedOutHomePage-validationIconContainer">
                                         <span class="Icon Icon--close"></span>
                                         <span class="Icon Icon--check"></span>
@@ -135,29 +188,9 @@
 
 </div>
 
-
-                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-firstName">
-                                    <input type="text" class="StaticLoggedOutHomePage-input text-input firstName-input" autocomplete="off" name="user[firstName]" placeholder="firstName">
-                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
-                                        <span class="Icon Icon--close"></span>
-                                        <span class="Icon Icon--check"></span>
-                                    </span>
-                
-
-</div>
-
-                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-lastName">
-                                    <input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="user[lastName]" placeholder="lastName">
-                                    <span class="StaticLoggedOutHomePage-validationIconContainer">
-                                        <span class="Icon Icon--close"></span>
-                                        <span class="Icon Icon--check"></span>
-                                    </span>
-                
-
-</div>
-
-                <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-lastName">
-                                    <input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="user[lastName]" placeholder="lastName">
+ <div class="StaticLoggedOutHomePage-field StaticLoggedOutHomePage-email">
+ <input type="text" class="StaticLoggedOutHomePage-input text-input email-input" autocomplete="off" name="email" placeholder="email">
+<!--                                    <input type="text" class="StaticLoggedOutHomePage-input text-input lastName-input" autocomplete="off" name="user[lastName]" placeholder="lastName">-->
                                     <span class="StaticLoggedOutHomePage-validationIconContainer">
                                         <span class="Icon Icon--close"></span>
                                         <span class="Icon Icon--check"></span>
@@ -172,7 +205,10 @@
                                 <input type="hidden" value="" name="context">
                                 <input type="hidden" value="862ca8c6b3c44735da4b6c756118174e9c5c8f6e" name="authenticity_token">
                                 <div class="StaticLoggedOutHomePage-getStartedBlock">
-                                    <button type="button" class="EdgeButton EdgeButton--medium EdgeButton--primary StaticLoggedOutHomePage-getStartedButton">
+<!--                                    <button type="button" class="EdgeButton EdgeButton--medium EdgeButton--primary StaticLoggedOutHomePage-getStartedButton">
+                                        Get started
+                                    </button>-->
+                                    <button type="submit" class="EdgeButton EdgeButton--medium EdgeButton--primary StaticLoggedOutHomePage-getStartedButton">
                                         Get started
                                     </button>
                                     <div>
