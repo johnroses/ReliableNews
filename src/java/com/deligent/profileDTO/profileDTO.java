@@ -5,6 +5,8 @@
  */
 package com.deligent.profileDTO;
 
+import javax.persistence.Column;
+
 /**
  *
  * @author Deligent
@@ -17,29 +19,34 @@ public class profileDTO {
 //    
 //    String interest3;
 //    
-    
+    //area of interest11111: interest-1,interest-2,interest-3,interest-4
+//place of interest : current, hometown, Living, Favorite
+
     private int id;
     
-    //@Column
-    private int post_id;
+    @Column
+    private String interest1;
     
-    //@Column
-    private String post_msg;
+    @Column
+    private String interest2;
     
-    //@Column
-    private String post_date;
+    @Column
+    private String interest3;
     
-   // @Column
-    private String post_by;
+    @Column
+    private String interest4;
     
-    //@Column
-    private String userid;
+    @Column
+    private String currentplace;
     
-  //  @Column
-    private String group1;
+    @Column
+    private String hometown;
     
-//    @Column
-    private String group2;
+    @Column
+    private String living;
+    
+    @Column
+    private String favorite;
 
     public int getId() {
         return id;
@@ -49,61 +56,71 @@ public class profileDTO {
         this.id = id;
     }
 
-    public int getPost_id() {
-        return post_id;
+    public String getInterest1() {
+        return interest1;
     }
 
-    public void setPost_id(int post_id) {
-        this.post_id = post_id;
+    public void setInterest1(String interest1) {
+        this.interest1 = interest1;
     }
 
-    public String getPost_msg() {
-        return post_msg;
+    public String getInterest2() {
+        return interest2;
     }
 
-    public void setPost_msg(String post_msg) {
-        this.post_msg = post_msg;
+    public void setInterest2(String interest2) {
+        this.interest2 = interest2;
     }
 
-    public String getPost_date() {
-        return post_date;
+    public String getInterest3() {
+        return interest3;
     }
 
-    public void setPost_date(String post_date) {
-        this.post_date = post_date;
+    public void setInterest3(String interest3) {
+        this.interest3 = interest3;
     }
 
-    public String getPost_by() {
-        return post_by;
+    public String getInterest4() {
+        return interest4;
     }
 
-    public void setPost_by(String post_by) {
-        this.post_by = post_by;
+    public void setInterest4(String interest4) {
+        this.interest4 = interest4;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getCurrentplace() {
+        return currentplace;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setCurrentplace(String currentplace) {
+        this.currentplace = currentplace;
     }
 
-    public String getGroup1() {
-        return group1;
+    public String getHometown() {
+        return hometown;
     }
 
-    public void setGroup1(String group1) {
-        this.group1 = group1;
+    public void setHometown(String hometown) {
+        this.hometown = hometown;
     }
 
-    public String getGroup2() {
-        return group2;
+    public String getLiving() {
+        return living;
     }
 
-    public void setGroup2(String group2) {
-        this.group2 = group2;
+    public void setLiving(String living) {
+        this.living = living;
     }
+
+    public String getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(String favorite) {
+        this.favorite = favorite;
+    }
+
+    
 
     
 }
