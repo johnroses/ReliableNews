@@ -6,7 +6,7 @@
 package com.deligent.loginDAO;
 
 import com.deligent.LOGIN.logDTO;
-import com.deligent.loginDT.UserDtO;
+
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Criteria;
