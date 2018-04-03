@@ -44,6 +44,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.deligent.msgService.msgService;
+import com.deligent.postService.PostService;
 /**
  *
  * @author Deligent
@@ -55,6 +56,9 @@ public class LoginController extends MultiActionController {
     @Autowired
     private LoginService loginservice;
     
+    @Autowired
+    private PostService postservice;
+
     @Autowired
     private msgService msgSer;
 //public class LoginController {    
@@ -185,9 +189,14 @@ public class LoginController extends MultiActionController {
         System.out.println(" password "+listUser.getPassword());
         listUser.setUsername(username);
         logDTO x = loginservice.validate(listUser);
-        mv.addObject("username", username);
+        System.out.println(" username"+x.getUsername());
+        System.out.println(" userid"+x.getUserid());
+        System.out.println("");
+        
         if (x.getUsername().equals(username)) {
             mv.addObject("listUser", listUser);
+            mv.addObject("username", x.getUsername());
+            mv.addObject("userid", x.getUserid());
         } else {
             mv.addObject("listUser", "Not Found");
             mv.setViewName("login");
@@ -197,9 +206,12 @@ public class LoginController extends MultiActionController {
         
         //contro jumps to msg 
         
-        List<msgDTO> listMsg=msgSer.feedmsg();
+       // List<msgDTO> listMsg=msgSer.feedmsg();
               
-        mv.addObject("listMsg", listMsg);
+     //   mv.addObject("listMsg", listMsg);
+            List<PostDTO> listMs=postservice.viewWallPost();
+         mv.addObject("listMsg",listMs);
+     
         //model.setViewName("wall");
         //mv.setViewName("myhome");
         mv.setViewName("myfeeds");
@@ -272,6 +284,15 @@ public class LoginController extends MultiActionController {
         return name;
         //return u;
 
+    }
+        
+        
+        @RequestMapping("/profile")
+    public ModelAndView profile(@ModelAttribute("listUser") logDTO listUser) throws IOException {
+        ModelAndView mv = new ModelAndView("profile");
+            System.out.println(" username profile; "+listUser.getUsername());
+        mv.addObject("listUser",listUser);
+        return mv;
     }
     /*
     
