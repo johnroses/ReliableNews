@@ -9,9 +9,13 @@ package com.deligent.postController;
 
 import com.deligent.postDTO.PostDTO;
 import com.deligent.postService.PostService;
-import com.deligent.profileDTO.profileDTO;
+
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +42,7 @@ public class postController extends MultiActionController{
 //ajax handler must not throw IO EXception     
     @RequestMapping("/postmsg")
     public ModelAndView myhome(ModelAndView model,HttpServletRequest request) throws IOException {
-        //List<Employee> listEmployee = employeeService.getAllEmployees();
+        //List<PostDTO> post = postservice.insertPost();
         //model.addObject("listEmployee", listEmployee);
         model.setViewName("homepage");
         //System.out.println("");
@@ -52,7 +56,7 @@ public class postController extends MultiActionController{
    // public @ResponseBody String getSearchUserProfiles(@RequestBody String pName) {
     //ModelAndView 
     //@RequestBody String pName
-     public  @ResponseBody String getSearchUserProfiles(@RequestParam String post_msg,@RequestParam String userid,HttpServletRequest request) {
+     public  @ResponseBody String insertWallPost(@RequestParam String post_msg,@RequestParam String userid,@RequestParam String username,@RequestParam String post_date,@RequestParam String group1, @RequestParam String group2,HttpServletRequest request) {
     //public @ResponseBody PostDTO insertPost(@RequestBody PostDTO pName,HttpServletRequest request)  {
      //public @ResponseBody PostDTO insertPost(@RequestParam PostDTO pName,HttpServletRequest request)  {
         
@@ -60,7 +64,31 @@ public class postController extends MultiActionController{
          ModelAndView mv = new ModelAndView("myhome");
          PostDTO post1=new PostDTO();
          System.out.println("post COntroller");
-         //postservice.insertPost();
+         
+         //starts with userid,min,hr,date,month,year
+         LocalTime timeKolkata = LocalTime.now(ZoneId.of("Asia/Kolkata"));
+		System.out.println("Current Time in IST="+timeKolkata);
+                //String.format(Locale.UK, group2, args)
+                String date=timeKolkata.toString();
+                System.out.println(" date "+date);
+         //String date = new SimpleDateFormat(post_date);
+         String post_id=userid+" "+post_date;
+         System.out.println(" postid "+post_id);
+         //int id1=Integer.valueOf(post_id);
+         //System.out.println(" "+id1);
+         //String temp=String.valueOf(id1);
+         //System.out.println(" str "+temp);
+         
+         System.out.println(" data to be inserted "+username+" date: "+post_date+" postmsg: "+post_msg+" userid:"+userid+" group1:"+group1+" group1: "+group2+" postid: "+post_id);
+         post1.setPost_by(username);
+         post1.setPost_date(post_date);
+         post1.setPost_msg(post_msg);
+         post1.setUserid(userid);
+         post1.setGroup1(group1);
+         post1.setGroup2(group2);
+         post1.setPost_msg(post_msg);
+         post1.setPost_id(post_id);
+         postservice.insertPost(post1);
          // System.out.println(" val"+request.getParameter("post_msg"));
          //System.out.println(" "+pName.getUserid());
          //System.out.println(" "+
@@ -68,19 +96,36 @@ public class postController extends MultiActionController{
          //post1.setUserid("23");
          System.out.println(" "+userid);
          System.out.println(" "+post_msg);
+         System.out.println(" "+post_date);
+         System.out.println(" "+group1);
+         System.out.println(" "+group2);
+         
          //System.out.println(" "+pName);
          //System.out.println(" req "+request.getParameter("userid"));
          //System.out.println(" MSG"+request.getParameter("post_msg"));
-         mv.addObject("pName","ROSE");
+         
+         mv.addObject("userid",userid);
+         mv.addObject("post_msg",post_msg);
+         mv.addObject("post_date",post_date);
+         mv.addObject("group1",group1);
+         mv.addObject("group2",group2);
          //System.out.println(" "+request);
          //List<PostDTO> post2=new List<PostDTO>();
          //post2.add("post_msg",pos);
-         
-         String username="JOHN ROSE";
-        return username;
+         mv.addObject("listMs",post1);
+         String username1="JOHN ROSE";
+        return username1;
          //return pName;
         //return mv;
         //return post1;
     }
+     
+     public ModelAndView viewWallPost(){
+         ModelAndView mv=new ModelAndView();
+         mv.setViewName("myfeeds");
+         List<PostDTO> listMs=postservice.viewWallPost();
+         mv.addObject("listMs",listMs);
+         return mv;
+     }
     
 }
