@@ -7,6 +7,7 @@ package com.deligent.postController;
 
 
 
+import com.deligent.LOGIN.logDTO;
 import com.deligent.postDTO.PostDTO;
 import com.deligent.postService.PostService;
 
@@ -119,7 +120,7 @@ public class postController extends MultiActionController{
         //return mv;
         //return post1;
     }
-     
+     @RequestMapping("/viewWallPost")
      public ModelAndView viewWallPost(){
          ModelAndView mv=new ModelAndView();
          mv.setViewName("myfeeds");
@@ -127,5 +128,44 @@ public class postController extends MultiActionController{
          mv.addObject("listMs",listMs);
          return mv;
      }
+     
+         @RequestMapping("/activitypost")
+    public ModelAndView activity(@ModelAttribute("activitypost")logDTO usr, HttpServletRequest request) throws IOException {
+        //List<PostDTO> post = postservice.insertPost();
+        ModelAndView model=new ModelAndView ();
+        //model.addObject("listEmployee", listEmployee);
+        model.setViewName("homepage");
+        //System.out.println("");
+             System.out.println(" req"+request.getParameter("account"));
+             System.out.println(" req11 "+request.getParameter("user"));
+             System.out.println("activity post =====");System.out.println(" "+usr.getFirstName());
+        ModelAndView mv = new ModelAndView("homepage");
+        return mv;
+    }
+    
+    @RequestMapping("/profile")
+    public String profile(@ModelAttribute("usr") PostDTO usr,Model model) throws IOException {
+        //List<PostDTO> post = postservice.insertPost();
+        //model.addObject("listEmployee", listEmployee);
+       // model.setViewName("homepage");
+        //System.out.println("");
+        ModelAndView mv = new ModelAndView();
+        //String
+                //userid="233";
+            usr.setGroup1("45");
+            usr.setGroup2("12");
+            usr.setId(0);
+            usr.setPost_by("6767");
+            usr.setPost_date("2322");
+            usr.setPost_id("4545");
+            usr.setPost_msg("5656");
+            usr.setUserid("1223");
+             
+            mv.addObject("usr",usr);
+        model.addAttribute("userid","2323");
+        //return mv;
+        return "redirect:/viewProfile.htm";  
+    }
+
     
 }
