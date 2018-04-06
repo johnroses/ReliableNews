@@ -45,11 +45,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import com.deligent.msgService.msgService;
 import com.deligent.postService.PostService;
+import org.springframework.web.bind.annotation.SessionAttributes;
 /**
  *
  * @author Deligent
  */
 @Controller
+@SessionAttributes("username")
 //@RequestMapping("/MySpringHibernate")
 public class LoginController extends MultiActionController {
 
@@ -136,6 +138,7 @@ public class LoginController extends MultiActionController {
         }
         //UserDTO user = new UserDtO();
         //mv.addObject("user",user);
+        
         mv.setViewName("login");
         return mv;
         // ModelAndView mv = new ModelAndView("login");
@@ -196,6 +199,7 @@ public class LoginController extends MultiActionController {
         if (x.getUsername().equals(username)) {
             mv.addObject("listUser", listUser);
             mv.addObject("username", x.getUsername());
+            mv.addObject("user", x.getUsername());
             mv.addObject("userid", x.getUserid());
         } else {
             mv.addObject("listUser", "Not Found");
@@ -211,7 +215,7 @@ public class LoginController extends MultiActionController {
      //   mv.addObject("listMsg", listMsg);
             List<PostDTO> listMs=postservice.viewWallPost();
          mv.addObject("listMsg",listMs);
-     
+         
         //model.setViewName("wall");
         //mv.setViewName("myhome");
         mv.setViewName("myfeeds");
@@ -224,6 +228,27 @@ public class LoginController extends MultiActionController {
     public ModelAndView forget(@ModelAttribute("usr") logDTO usr) throws IOException {
         ModelAndView mv = new ModelAndView("validate");
         return mv;
+    }
+    //this method pass string values as GET method to another controller
+    @RequestMapping("/two")
+    public String two(@ModelAttribute("usr") logDTO usr, Model model) throws IOException {
+        ModelAndView mv = new ModelAndView("validate");
+        //return mv;
+        String jo="testing";
+        usr.setFirstName("johnro");
+        usr.setDob("55");
+        usr.setEmail("hjk");
+        usr.setGender("h");
+        usr.setId(11);
+        usr.setLastName("fd");
+        usr.setPassword("fds");
+        usr.setUsername("ff");
+        usr.setUserid("fsdfa");
+        model.addAttribute("account","ACCOUNT");
+        //model.addAttribute("user",usr);
+        model.addAttribute("user",jo);
+        System.out.println("====== tw=           =====");
+        return "redirect:/activitypost.htm";  
     }
 //    @RequestMapping("/validate")
 //    public ModelAndView validate(@ModelAttribute("usr") logDTO usr) throws IOException {
@@ -287,13 +312,7 @@ public class LoginController extends MultiActionController {
     }
         
         
-        @RequestMapping("/profile")
-    public ModelAndView profile(@ModelAttribute("listUser") logDTO listUser) throws IOException {
-        ModelAndView mv = new ModelAndView("profile");
-            System.out.println(" username profile; "+listUser.getUsername());
-        mv.addObject("listUser",listUser);
-        return mv;
-    }
+       
     /*
     
     	@RequestMapping(value="/savefile",method=RequestMethod.POST)  
