@@ -18,6 +18,7 @@ import java.time.ZoneId;
 import java.util.List;
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,12 +31,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  *
  * @author Deligent
  */
 @Controller
+@SessionAttributes("user")
 public class postController extends MultiActionController{
     
     @Autowired
@@ -130,12 +133,13 @@ public class postController extends MultiActionController{
      }
      
          @RequestMapping("/activitypost")
-    public ModelAndView activity(@ModelAttribute("activitypost")logDTO usr, HttpServletRequest request) throws IOException {
+    public ModelAndView activity(@ModelAttribute("activitypost")logDTO usr, HttpServletRequest request,HttpSession session) throws IOException {
         //List<PostDTO> post = postservice.insertPost();
         ModelAndView model=new ModelAndView ();
         //model.addObject("listEmployee", listEmployee);
         model.setViewName("homepage");
         //System.out.println("");
+             System.out.println(" ::"+session.getAttribute("userNAME"));
              System.out.println(" req"+request.getParameter("account"));
              System.out.println(" req11 "+request.getParameter("user"));
              System.out.println("activity post =====");System.out.println(" "+usr.getFirstName());
@@ -144,14 +148,8 @@ public class postController extends MultiActionController{
     }
     
     @RequestMapping("/profile")
-    public String profile(@ModelAttribute("usr") PostDTO usr,Model model) throws IOException {
-        //List<PostDTO> post = postservice.insertPost();
-        //model.addObject("listEmployee", listEmployee);
-       // model.setViewName("homepage");
-        //System.out.println("");
+    public String profile(@ModelAttribute("user1") PostDTO usr,Model model,HttpSession session) throws IOException {
         ModelAndView mv = new ModelAndView();
-        //String
-                //userid="233";
             usr.setGroup1("45");
             usr.setGroup2("12");
             usr.setId(0);
@@ -161,8 +159,11 @@ public class postController extends MultiActionController{
             usr.setPost_msg("5656");
             usr.setUserid("1223");
              
-            mv.addObject("usr",usr);
-        model.addAttribute("userid","2323");
+            mv.addObject("user",usr);
+            model.addAttribute("userid","2323");
+            
+            System.out.println(" ::"+session.getAttribute("username"));
+            System.out.println(" :"+session.getAttribute("userid"));
         //return mv;
         return "redirect:/viewProfile.htm";  
     }
