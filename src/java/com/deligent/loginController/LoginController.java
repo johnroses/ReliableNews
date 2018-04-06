@@ -184,7 +184,7 @@ public class LoginController extends MultiActionController {
     }
 
     @RequestMapping("/validate")
-    public ModelAndView validate(@ModelAttribute("listUser") logDTO listUser) throws IOException {
+    public ModelAndView validate(@ModelAttribute("listUser") logDTO listUser, HttpServletRequest request) throws IOException {
 
         ModelAndView mv = new ModelAndView("login");
         String username = listUser.getUsername();
@@ -195,12 +195,15 @@ public class LoginController extends MultiActionController {
         System.out.println(" username"+x.getUsername());
         System.out.println(" userid"+x.getUserid());
         System.out.println("");
-        
+        HttpSession session=request.getSession();
         if (x.getUsername().equals(username)) {
             mv.addObject("listUser", listUser);
             mv.addObject("username", x.getUsername());
             mv.addObject("user", x.getUsername());
             mv.addObject("userid", x.getUserid());
+           session.setAttribute("username", x.getUsername());
+           session.setAttribute("userid", x.getUserid());
+            
         } else {
             mv.addObject("listUser", "Not Found");
             mv.setViewName("login");
@@ -231,7 +234,7 @@ public class LoginController extends MultiActionController {
     }
     //this method pass string values as GET method to another controller
     @RequestMapping("/two")
-    public String two(@ModelAttribute("usr") logDTO usr, Model model) throws IOException {
+    public String two(@ModelAttribute("usr") logDTO usr, Model model,HttpServletRequest request) throws IOException {
         ModelAndView mv = new ModelAndView("validate");
         //return mv;
         String jo="testing";
@@ -247,6 +250,8 @@ public class LoginController extends MultiActionController {
         model.addAttribute("account","ACCOUNT");
         //model.addAttribute("user",usr);
         model.addAttribute("user",jo);
+        HttpSession session=request.getSession();
+        session.setAttribute("userNAME", "userNAMEIS");
         System.out.println("====== tw=           =====");
         return "redirect:/activitypost.htm";  
     }
