@@ -1621,7 +1621,8 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                                 </li>-->
 
 
-                                                <li><a href="https://studio.twitter.com/?ref=dotcom" target="_blank" data-nav="media_studio" rel="noopener">Media Studio</a></li>
+<!--                                                <li>
+                                                    <a href="https://studio.twitter.com/?ref=dotcom" target="_blank" data-nav="media_studio" rel="noopener">Media Studio</a></li>-->
 
 
 
@@ -2346,6 +2347,15 @@ image is commented
 
           <div class="ProfileTweet-actionList js-actions" role="group" aria-label="Tweet actions">
               <div class="ProfileTweet-action ProfileTweet-action--reply">
+<!--                  <button onclick ="find('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
+                      <div class="IconContainer js-tooltip" title="Reply">
+                          <span class="Icon Icon--medium Icon--reply"></span>
+                          <span class="u-hiddenVisually">Reply</span>
+                      </div>
+                      <span class="ProfileTweet-actionCount ">
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">24</span>
+                      </span>
+                  </button>-->
                   <button onclick ="find('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Reply">
                           <span class="Icon Icon--medium Icon--reply"></span>
@@ -2358,7 +2368,7 @@ image is commented
               </div>
 
               <div class="ProfileTweet-action ProfileTweet-action--retweet js-toggleState js-toggleRt">
-                  <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">
+<!--                  <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Retweet">
                           <span class="Icon Icon--medium Icon--retweet"></span>
                           <span class="u-hiddenVisually">Retweet</span>
@@ -2367,7 +2377,18 @@ image is commented
                           <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">55</span>
                       </span>
 
-                  </button><button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button">
+                  </button>-->
+                   <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">
+                      <div class="IconContainer js-tooltip" title="Retweet">
+                          <span class="Icon Icon--medium Icon--retweet"></span>
+                          <span class="u-hiddenVisually">Retweet</span>
+                      </div>
+                      <span class="ProfileTweet-actionCount">
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">55</span>
+                      </span>
+
+                  </button>
+                  <button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button">
                       <div class="IconContainer js-tooltip" title="Undo retweet">
                           <span class="Icon Icon--medium Icon--retweet"></span>
                           <span class="u-hiddenVisually">Retweeted</span>
