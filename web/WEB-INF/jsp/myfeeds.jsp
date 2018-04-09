@@ -62,6 +62,17 @@ for (var i = 0; i <= buttonsCount; i += 1) {
     }
 </script>-->
 <script>
+    function postdrop(){
+        //alert("DROP");
+        //dropdown-menu is-autoCentered
+        var x=document.getElementById("dropmenu");
+        x.style.display="flex";
+         //var c=document.getElementsByClassName("dropdown-menu is-autoCentered");//
+//.style.display="flex";;
+           //     c[0].style.display="flex"; 
+    }
+    </script>
+<script>
 
  $(document).ready(function () {
     $("button").click(function() {
@@ -70,9 +81,13 @@ for (var i = 0; i <= buttonsCount; i += 1) {
     
     var id = $(this).closest('.content');
     alert(id+" class")
-    var pp=id.find("p");
+    var pp=id.find(".TweetTextSize");
+    //var pp=id.find("p");//find for all paragraph children
     alert(pp+"para");
     console.log(pp.text())
+    
+    var b12=id.find("b");
+    console.log(b12.text());
     
     $(this).parent("div").each(function(){
        console.log("div div") ;
@@ -1489,7 +1504,8 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                             <span class="u-hiddenVisually a11y-active-page-text">Home, current page.</span>
                                             <span class="u-hiddenVisually hidden-new-items-text">New Tweets available.</span>
                                         </a>
-                                    </li> <li class="people notifications" data-global-action="connect">
+                                    </li> 
+<!--                                    <li class="people notifications" data-global-action="connect">
                                         <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="https://twitter.com/i/notifications" data-component-context="connect_nav" data-nav="connect" data-original-title="">
                                             <span class="Icon Icon--notifications Icon--large"></span>
                                             <span class="Icon Icon--notificationsFilled Icon--large u-textUserColor"></span>
@@ -1500,7 +1516,8 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                                 <span class="count-inner">1</span>
                                             </span>
                                         </a>
-                                    </li><li class="dm-nav">
+                                    </li>-->
+                                    <li class="dm-nav">
                                         <a role="button" href="#" class="js-tooltip js-dynamic-tooltip global-dm-nav" data-placement="bottom" data-original-title="">
                                             <span class="Icon Icon--dm Icon--large"></span>
                                             <span class="text">Messages</span>
@@ -1567,30 +1584,30 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                                     </a>
                                                 </li>
 
-                                                <li data-name="lists">
+<!--                                                <li data-name="lists">
                                                     <a class="js-nav" href="https://twitter.com/JohnRoseTweets/lists" data-nav="all_lists">
                                                         <span class="DashUserDropdown-linkIcon Icon Icon--medium Icon--list"></span>Lists
                                                     </a>
-                                                </li>
+                                                </li>-->
 
 
-                                                <li data-name="moments">
+<!--                                                <li data-name="moments">
                                                     <a class="js-nav" href="https://twitter.com/JohnRoseTweets/moments" data-nav="all_moments">
                                                         <span class="DashUserDropdown-linkIcon Icon Icon--medium Icon--lightning"></span>Moments
                                                     </a>
-                                                </li>
+                                                </li>-->
 
                                                 <li class="dropdown-divider"></li>
 
 
-                                                <li>
+<!--                                                <li>
                                                     <a href="https://ads.twitter.com/subscriptions/mobile/landing" target="_blank" data-nav="promote-mode" rel="noopener">
                                                         <span class="DashUserDropdown-linkIcon Icon Icon--medium Icon--promoteMode"></span>Promote Mode
                                                     </a>
-                                                </li>
+                                                </li>-->
 
 
-                                                <li>
+<!--                                                <li>
                                                     <a href="https://ads.twitter.com/?ref=gl-tw-tw-twitter-ads" target="_blank" data-nav="ads" rel="noopener">
                                                         <span class="DashUserDropdown-linkIcon Icon Icon--medium Icon--promotedStroked"></span>Twitter Ads
                                                     </a>
@@ -1601,7 +1618,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                                     <a class="user-dropdown-analytics" href="https://analytics.twitter.com/" target="_blank" data-nav="user_dropdown_analytics" rel="noopener">
                                                         <span class="DashUserDropdown-linkIcon Icon Icon--medium Icon--analytics"></span>Analytics
                                                     </a>
-                                                </li>
+                                                </li>-->
 
 
                                                 <li><a href="https://studio.twitter.com/?ref=dotcom" target="_blank" data-nav="media_studio" rel="noopener">Media Studio</a></li>
@@ -1619,9 +1636,9 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                                 <li><a href="https://support.twitter.com/" data-nav="help_center" rel="noopener">Help Center</a></li>
 
 
-                                                <li class="js-keyboard-shortcut-trigger" data-nav="shortcuts">
+<!--                                                <li class="js-keyboard-shortcut-trigger" data-nav="shortcuts">
                                                     <button type="button" class="dropdown-link">Keyboard shortcuts</button>
-                                                </li>
+                                                </li>-->
 
 
                                                 <li class="js-signout-button" id="signout-button" data-nav="logout">
@@ -1635,14 +1652,14 @@ right > TweetBoxToolbar-tweetButton tweet-button
 
 
                                                 <li class="dropdown-divider"></li>
-                                                <li class="current-user nightmode-toggle" data-name="profile">
+<!--                                                <li class="current-user nightmode-toggle" data-name="profile">
                                                     <a class="js-nav" data-nav="view_profile">
                                                         <span class="DashUserDropdown-linkIcon Icon Icon--medium js-nightmode-icon
  Icon--crescent
                                                               ">
                                                         </span><span class="js-nightmode-label">Night mode</span>
                                                     </a>
-                                                </li>
+                                                </li>-->
 
                                             </ul>
                                         </div>
@@ -2212,13 +2229,13 @@ right > TweetBoxToolbar-tweetButton tweet-button
 
             <div class="ProfileTweet-action ProfileTweet-action--more js-more-ProfileTweet-actions">
                 <div class="dropdown">
-                    <button class="ProfileTweet-actionButton u-textUserColorHover dropdown-toggle js-dropdown-toggle" type="button" aria-haspopup="true">
+                    <button onclick="postdrop()" id="postdropmenu" class="ProfileTweet-actionButton u-textUserColorHover dropdown-toggle js-dropdown-toggle" type="button" aria-haspopup="true">
                         <div class="IconContainer js-tooltip" title="More">
                             <span class="Icon Icon--caretDownLight Icon--small"></span>
                             <span class="u-hiddenVisually">More</span>
                         </div>
                     </button>
-                    <div class="dropdown-menu is-autoCentered">
+                    <div id="dropmenu" class="dropdown-menu is-autoCentered">
                         <div class="dropdown-caret">
                             <div class="caret-outer"></div>
                             <div class="caret-inner"></div>
@@ -2228,7 +2245,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
                             <li class="copy-link-to-tweet js-actionCopyLinkToTweet">
                                 <button type="button" class="dropdown-link">Copy link to Tweet</button>
                             </li>
-                            <li class="embed-link js-actionEmbedTweet" data-nav="embed_tweet">
+<!--                            <li class="embed-link js-actionEmbedTweet" data-nav="embed_tweet">
                                 <button type="button" class="dropdown-link">Embed Tweet</button>
                             </li>
                             <li class="mute-user-item"><button type="button" class="dropdown-link">Mute <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button></li>
@@ -2239,7 +2256,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
                             </li>
                             <li class="unblock-link js-actionUnblock" data-nav="unblock">
                                 <button type="button" class="dropdown-link">Unblock <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button>
-                            </li>
+                            </li>-->
                             <li class="report-link js-actionReport" data-nav="report">
                                 <button type="button" class="dropdown-link">
 
@@ -2253,12 +2270,12 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                 </button>
                             </li>
                             <li class="dropdown-divider"></li>
-                            <li class="js-actionMomentMakerAddTweetToOtherMoment MomentMakerAddTweetToOtherMoment">
+<!--                            <li class="js-actionMomentMakerAddTweetToOtherMoment MomentMakerAddTweetToOtherMoment">
                                 <button type="button" class="dropdown-link">Add to other Moment</button>
                             </li>
                             <li class="js-actionMomentMakerCreateMoment">
                                 <button type="button" class="dropdown-link">Add to new Moment</button>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
 
@@ -2268,21 +2285,14 @@ right > TweetBoxToolbar-tweetButton tweet-button
 
         </div>
 
-
-
-
-
         <div class="js-tweet-text-container">
             
             <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en" id="my1">All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then ${post.post_msg}
                 <p>${post.id}</p>
+                <p>SESSION ${user}</p>
             
                 <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s><b>MiamiOpen ${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>bnppo18 ${post.group2}</b></a> <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand"><a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
         </div>
-
-
-
-
 
 <!--        <div class="AdaptiveMediaOuterContainer">
             <div class="AdaptiveMedia  is-square   ">
@@ -2309,10 +2319,7 @@ image is commented
                 <a class="js-user-profile-link" href="https://twitter.com/MiamiOpen" data-user-id="71048059" rel="noopener">Miami Open</a>
             </div>
 
-        </div>
-
-      
-      
+        </div>     
 
 
         <div class="stream-item-footer">
@@ -2542,10 +2549,6 @@ image is commented
                 <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>@</s><b>MiamiOpen ${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>bnppo18 ${post.group2}</b></a> <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand"><a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
         </div>
 
-
-
-
-
 <!--        <div class="AdaptiveMediaOuterContainer">
             <div class="AdaptiveMedia  is-square   ">
                 <div class="AdaptiveMedia-container">
@@ -2571,10 +2574,7 @@ image is commented
                 <a class="js-user-profile-link" href="https://twitter.com/MiamiOpen" data-user-id="71048059" rel="noopener">Miami Open</a>
             </div>
 
-        </div>
-
-      
-      
+        </div>   
 
 
         <div class="stream-item-footer">
