@@ -80,15 +80,42 @@ for (var i = 0; i <= buttonsCount; i += 1) {
     //console.log($(this).find("div");
     
     var id = $(this).closest('.content');
-    alert(id+" class")
+   // alert(id+" class")
     var pp=id.find(".TweetTextSize");
     //var pp=id.find("p");//find for all paragraph children
-    alert(pp+"para");
+    //alert(pp+"para");
     console.log(pp.text())
+    console.log(" Group1");
     
     var b12=id.find("b");
     console.log(b12.text());
-    
+    console.log(b12.text().length);
+    console.log("fff");
+    var g1,g2,g3;
+    for (var ii=0;ii<b12.text().length;ii++){
+        if(b12.text().charAt(ii)==' '){
+            console.log("break");
+            console.log(g1.toString());
+            g1="";
+        }
+            
+        else{
+            //console.log("text is"+b12.text().charAt(ii));
+            
+            g1 +=b12.text().charAt(ii);
+        }
+            
+    }
+    var b13=id.find(".group1");
+    var b14=id.find(".group2");
+    console.log("group1 "+b13.text().length);
+            console.log(b13.text());
+            console.log("group2 "+b14.text().length);
+    console.log(b14.text());
+    console.log(" postid");
+    var postid12=id.find(".postid1");
+    //alert(postid12)
+    console.log(postid12.text()+" postid");
     $(this).parent("div").each(function(){
        console.log("div div") ;
        console.log($(this).parent("div"));
@@ -106,17 +133,17 @@ for (var i = 0; i <= buttonsCount; i += 1) {
     });
     
     
-    switch ( $( "button" ).index( this ) ) {
-    case 19 :
-	alert("ok"+this);
-	//this.setAttribute("data-sample", "button"); 
-
-      //value = $( "div" ).data( "blah" );
-      break;
-	default:
-            alert("default Button");
-                break;
- }
+//    switch ( $( "button" ).index( this ) ) {
+//    case 19 :
+//	alert("ok"+this);
+//	//this.setAttribute("data-sample", "button"); 
+//
+//      //value = $( "div" ).data( "blah" );
+//      break;
+//	//default:
+//          //  alert("default Button");
+//            //    break;
+// }
         });
  });
 </script>
@@ -156,7 +183,7 @@ for (var i = 0; i <= buttonsCount; i += 1) {
 
 function find(parentName,childObj)
 {
-alert("re");
+//alert("re");
   
 //function reply(parentNode,childObj)
  var testObj = childObj.parentNode;
@@ -192,7 +219,7 @@ alert("re");
 
     // now you have the object you are looking for - do something with it
 
-    alert('Finally found ' + testObj.getAttribute('class') + ' after going up ' + count + ' level(s) through the DOM tree');
+  //  alert('Finally found ' + testObj.getAttribute('class') + ' after going up ' + count + ' level(s) through the DOM tree');
 
 
 
@@ -250,7 +277,7 @@ window.onload=function(){
 //l[0].innerHTML ="ROSE";
 
 //var xx1=document.getElementsByClassName('u-linkComplex-target')[0].innerHTML="fdf";
-document.getElementByid("hidetweet").style.display="none";
+//document.getElementById("hidetweet").style.display="none";
 
 };
 function fun(){
@@ -489,7 +516,7 @@ var po=$("#tweet-box-home-timeline").text();
 
 
         
-        <title>My home</title>
+        <title>My home myfeeds</title>
 
 
 <!--        <script>
@@ -2221,7 +2248,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
             <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="https://twitter.com/Petra_Kvitova" data-user-id="533202479">
                 <img class="avatar js-action-profile-avatar" src="ADMvYXZc_bigger.jpg" alt="">
                 <span class="FullNameGroup">
-                    <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">Petra Kvitova</strong><span>â€</span><span class="UserBadges"><span class="Icon Icon--verified"><span class="u-hiddenVisually">Verified account</span></span></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>Petra_Kvitova ${post.post_by}</b></span></a>
+                    <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">Petra Kvitova</strong><span>â€</span><span class="UserBadges"><span class="Icon Icon--verified"><span class="u-hiddenVisually">Verified account</span></span></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b class="post_by">Petra_Kvitova ${post.post_by}</b></span></a>
 
 
             <small class="time">
@@ -2290,9 +2317,14 @@ right > TweetBoxToolbar-tweetButton tweet-button
             
             <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en" id="my1">All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then ${post.post_msg}
                 <p>${post.id}</p>
+                <p class="postid1"> ${post.post_id}</p>
                 <p>SESSION ${user}</p>
             
-                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s><b>MiamiOpen ${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>bnppo18 ${post.group2}</b></a> <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand"><a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
+<!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
+                <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s><b class="group1"> ${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b class="group2">${post.group2}</b></a> 
+<!--                <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand">-->
+                <a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
+        
         </div>
 
 <!--        <div class="AdaptiveMediaOuterContainer">
@@ -2318,6 +2350,53 @@ image is commented
             <div class="media-tagging-block">
                 <a class="js-user-profile-link" href="https://twitter.com/BNPPARIBASOPEN" data-user-id="30017071" rel="noopener">BNP Paribas Open</a> and
                 <a class="js-user-profile-link" href="https://twitter.com/MiamiOpen" data-user-id="71048059" rel="noopener">Miami Open</a>
+            </div>
+            
+            <div class="media-tagging-block">
+                <a class="js-user-profile-link" href="blank">WIKI </a>
+                <div id="WIKI1" class="dropdown-menu is-autoCentered">
+                        <div class="dropdown-caret">
+                            <div class="caret-outer"></div>
+                            <div class="caret-inner"></div>
+                        </div>
+                        <ul>
+
+                            <li class="copy-link-to-tweet js-actionCopyLinkToTweet">
+                                <button type="button" class="dropdown-link">Copy link to Tweet</button>
+                            </li>
+<!--                            <li class="embed-link js-actionEmbedTweet" data-nav="embed_tweet">
+                                <button type="button" class="dropdown-link">Embed Tweet</button>
+                            </li>
+                            <li class="mute-user-item"><button type="button" class="dropdown-link">Mute <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button></li>
+                            <li class="unmute-user-item"><button type="button" class="dropdown-link">Unmute <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button></li>
+
+                            <li class="block-link js-actionBlock" data-nav="block">
+                                <button type="button" class="dropdown-link">Block <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button>
+                            </li>
+                            <li class="unblock-link js-actionUnblock" data-nav="unblock">
+                                <button type="button" class="dropdown-link">Unblock <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button>
+                            </li>-->
+                            <li class="report-link js-actionReport" data-nav="report">
+                                <button type="button" class="dropdown-link">
+
+
+                                    Report Tweet
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-link feedback-action action-prompt" data-feedback-type="DontLike" data-feedback-url="">
+                                    I don't like this Tweet
+                                </button>
+                            </li>
+                            <li class="dropdown-divider"></li>
+<!--                            <li class="js-actionMomentMakerAddTweetToOtherMoment MomentMakerAddTweetToOtherMoment">
+                                <button type="button" class="dropdown-link">Add to other Moment</button>
+                            </li>
+                            <li class="js-actionMomentMakerCreateMoment">
+                                <button type="button" class="dropdown-link">Add to new Moment</button>
+                            </li>-->
+                        </ul>
+                    </div>
             </div>
 
         </div>     
@@ -2362,7 +2441,7 @@ image is commented
                           <span class="u-hiddenVisually">Reply</span>
                       </div>
                       <span class="ProfileTweet-actionCount ">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">24</span>
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">Support</span>
                       </span>
                   </button>
               </div>
@@ -2384,7 +2463,7 @@ image is commented
                           <span class="u-hiddenVisually">Retweet</span>
                       </div>
                       <span class="ProfileTweet-actionCount">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">55</span>
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">No Support 55</span>
                       </span>
 
                   </button>
@@ -2394,7 +2473,7 @@ image is commented
                           <span class="u-hiddenVisually">Retweeted</span>
                       </div>
                       <span class="ProfileTweet-actionCount">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">55</span>
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">NO SUPPORT 55</span>
                       </span>
 
                   </button>
@@ -2409,7 +2488,7 @@ image is commented
                           <span class="u-hiddenVisually">Like</span>
                       </div>
                       <span class="ProfileTweet-actionCount" data-tweet-stat-count="808">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">808</span>
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">Undecided</span>
                       </span>
 
                   </button><button class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">
@@ -2419,7 +2498,7 @@ image is commented
                           <span class="u-hiddenVisually">Liked</span>
                       </div>
                       <span class="ProfileTweet-actionCount" data-tweet-stat-count="808">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">808</span>
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">Undecided </span>
                       </span>
 
                   </button>
@@ -2567,7 +2646,10 @@ image is commented
             </table>-->
                 
             <p>${post.post_msg} : ${post.group1}</p>
-                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>@</s><b>MiamiOpen ${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>bnppo18 ${post.group2}</b></a> <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand"><a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
+<!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
+                <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>@</s><b>${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>${post.group2}</b></a> 
+<!--                <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand">-->
+                <a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
         </div>
 
 <!--        <div class="AdaptiveMediaOuterContainer">
@@ -2593,6 +2675,9 @@ image is commented
             <div class="media-tagging-block">
                 <a class="js-user-profile-link" href="https://twitter.com/BNPPARIBASOPEN" data-user-id="30017071" rel="noopener">BNP Paribas Open</a> and
                 <a class="js-user-profile-link" href="https://twitter.com/MiamiOpen" data-user-id="71048059" rel="noopener">Miami Open</a>
+            </div>
+            <div>
+                
             </div>
 
         </div>   
@@ -2624,7 +2709,7 @@ image is commented
               <div class="ProfileTweet-action ProfileTweet-action--reply">
                   <button class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Reply">
-                          <span class="Icon Icon--medium Icon--reply"></span>
+                          <span class="Icon Icon--medium Icon--reply">Support</span>
                           <span class="u-hiddenVisually">Reply</span>
                       </div>
                       <span class="ProfileTweet-actionCount ">
@@ -2636,7 +2721,7 @@ image is commented
               <div class="ProfileTweet-action ProfileTweet-action--retweet js-toggleState js-toggleRt">
                   <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Retweet">
-                          <span class="Icon Icon--medium Icon--retweet"></span>
+                          <span class="Icon Icon--medium Icon--retweet">Not Support</span>
                           <span class="u-hiddenVisually">Retweet</span>
                       </div>
                       <span class="ProfileTweet-actionCount">
@@ -2659,8 +2744,8 @@ image is commented
               <div class="ProfileTweet-action ProfileTweet-action--favorite js-toggleState">
                   <button class="ProfileTweet-actionButton js-actionButton js-actionFavorite" type="button" aria-describedby="profile-tweet-action-favorite-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Like">
-                          <span role="presentation" class="Icon Icon--heart Icon--medium"></span>
-                          <div class="HeartAnimation"></div>
+                          <span role="presentation" class="Icon Icon--heart Icon--medium">UNDECIDED</span>
+                          <div class="HeartAnimation">LIKE</div>
                           <span class="u-hiddenVisually">Like</span>
                       </div>
                       <span class="ProfileTweet-actionCount" data-tweet-stat-count="808">
