@@ -62,6 +62,23 @@ for (var i = 0; i <= buttonsCount; i += 1) {
     }
 </script>-->
 <script>
+//wiki content
+            // One query, example code:
+function WD(item) {
+    url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
+    $.getJSON(url, function (json) {
+        var item_id = Object.keys(json.query.pages)[0]; // THIS DO THE TRICK !
+        sent = json.query.pages[item_id].extract;
+        result = "<b>En :</b> <t>" + item + "</t> <b>⇒</b> " + sent;
+        $('#anchor1').append("<div>"+result+"</div>"); // append
+    });
+}
+WD("ds");
+
+</script>
+
+
+<script>
     function postdrop(){
         //alert("DROP");
         //dropdown-menu is-autoCentered
@@ -72,6 +89,47 @@ for (var i = 0; i <= buttonsCount; i += 1) {
            //     c[0].style.display="flex"; 
     }
     </script>
+    <script>
+    function men1(){
+        //alert("DROP");
+        //dropdown-menu is-autoCentered
+        //var x=document.getElementById("WIKI1").style.display="flex";;
+        ////style.top="100px";
+        //alert("hi"+x);
+        //x.style.display="flex";
+           var c6=document.getElementsByClassName("mysubmenu");//.style.display="flex";;
+              c6[0].style.display="flex"; 
+         
+    }
+    </script>
+    <style>
+        .mysubmenu {
+    position: absolute;
+    top: 100%;
+    z-index: 900;
+    display:none;
+    float: left;
+    padding: 10px 0;
+    margin: 2px 0 0;
+    background: #fff;
+        background-clip: border-box;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    background-clip: padding-box;
+}
+        </style>
+<!--    <script>
+    function but(){
+        //alert("DROP");
+        //dropdown-menu is-autoCentered
+        var x=document.getElementById("cli");
+        x.style.display="flex";
+         //var c=document.getElementsByClassName("dropdown-menu is-autoCentered");//
+//.style.display="flex";;
+           //     c[0].style.display="flex"; 
+    }
+    </script>-->
+    
 <script>
 
  $(document).ready(function () {
@@ -164,6 +222,20 @@ for (var i = 0; i <= buttonsCount; i += 1) {
 //.style.display="flex";;
                 c[0].style.display="flex"; 
             });
+            
+            
+             $(".mysubMenu").click(function(){
+                //$(".DashUserDropdown dropdown-menu dropdown-menu--rightAlign is-forceRight is-autoCentered").display="flex";
+               // $(".DashUserDropdown dropdown-menu dropdown-menu--rightAlign is-forceRight is-autoCentered").display="flex";
+        
+
+                var c=document.getElementsByClassName("mysubmenu");//
+//.style.display="flex";;
+                c[0].style.display="flex"; 
+                c[0].style.width="25%"; 
+                c[0].style.position="relative"; 
+            });
+            
   });
             </script>
 <script>
@@ -290,6 +362,8 @@ var d=document.getElementById("tweet-box-home-timeline");
 var c=document.getElementsByClassName("TweetBoxToolbar");//
 //.style.display="flex";;
 c[0].style.display="flex"; 
+var te=document.getElementById("tweet-box-home-timeline").text();
+te="";
 //changed in css code itself
 
 //var cl=document.getElementById("tweetsBTN").classList.remove("disabled");
@@ -2319,9 +2393,9 @@ right > TweetBoxToolbar-tweetButton tweet-button
                 <p>${post.id}</p>
                 <p class="postid1"> ${post.post_id}</p>
                 <p>SESSION ${user}</p>
-            
+                    <div id="anchor1"></div>
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
-                <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s><b class="group1"> ${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b class="group2">${post.group2}</b></a> 
+                <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s><b class="group1 mysubMenu"> ${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b class="group2 mysubMenu">${post.group2}</b></a> 
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand">-->
                 <a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
         
@@ -2351,10 +2425,13 @@ image is commented
                 <a class="js-user-profile-link" href="https://twitter.com/BNPPARIBASOPEN" data-user-id="30017071" rel="noopener">BNP Paribas Open</a> and
                 <a class="js-user-profile-link" href="https://twitter.com/MiamiOpen" data-user-id="71048059" rel="noopener">Miami Open</a>
             </div>
-            
+          
             <div class="media-tagging-block">
+                <div   class="ProfileTweet-actionButton u-textUserColorHover dropdown-toggle js-dropdown-toggle mysubMenu">click</div>
                 <a class="js-user-profile-link" href="blank">WIKI </a>
-                <div id="WIKI1" class="dropdown-menu is-autoCentered">
+               
+                <div    class="mysubmenu">
+<!--                <div id="WIKI1" onclick="fun()" class="dropdown-menu is-autoCentered mysubmenu">-->
                         <div class="dropdown-caret">
                             <div class="caret-outer"></div>
                             <div class="caret-inner"></div>
@@ -2364,18 +2441,7 @@ image is commented
                             <li class="copy-link-to-tweet js-actionCopyLinkToTweet">
                                 <button type="button" class="dropdown-link">Copy link to Tweet</button>
                             </li>
-<!--                            <li class="embed-link js-actionEmbedTweet" data-nav="embed_tweet">
-                                <button type="button" class="dropdown-link">Embed Tweet</button>
-                            </li>
-                            <li class="mute-user-item"><button type="button" class="dropdown-link">Mute <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button></li>
-                            <li class="unmute-user-item"><button type="button" class="dropdown-link">Unmute <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button></li>
-
-                            <li class="block-link js-actionBlock" data-nav="block">
-                                <button type="button" class="dropdown-link">Block <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button>
-                            </li>
-                            <li class="unblock-link js-actionUnblock" data-nav="unblock">
-                                <button type="button" class="dropdown-link">Unblock <span class="username u-dir u-textTruncate" dir="ltr">@<b>Petra_Kvitova</b></span></button>
-                            </li>-->
+                            
                             <li class="report-link js-actionReport" data-nav="report">
                                 <button type="button" class="dropdown-link">
 
@@ -2389,12 +2455,10 @@ image is commented
                                 </button>
                             </li>
                             <li class="dropdown-divider"></li>
-<!--                            <li class="js-actionMomentMakerAddTweetToOtherMoment MomentMakerAddTweetToOtherMoment">
+                            <li class="js-actionMomentMakerAddTweetToOtherMoment MomentMakerAddTweetToOtherMoment">
                                 <button type="button" class="dropdown-link">Add to other Moment</button>
                             </li>
-                            <li class="js-actionMomentMakerCreateMoment">
-                                <button type="button" class="dropdown-link">Add to new Moment</button>
-                            </li>-->
+                            
                         </ul>
                     </div>
             </div>
@@ -2647,7 +2711,7 @@ image is commented
                 
             <p>${post.post_msg} : ${post.group1}</p>
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
-                <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>@</s><b>${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>${post.group2}</b></a> 
+                <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>@</s><b class="mysubMenu">${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b class="mysubMenu">${post.group2}</b></a> 
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand">-->
                 <a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
         </div>
@@ -2675,6 +2739,39 @@ image is commented
             <div class="media-tagging-block">
                 <a class="js-user-profile-link" href="https://twitter.com/BNPPARIBASOPEN" data-user-id="30017071" rel="noopener">BNP Paribas Open</a> and
                 <a class="js-user-profile-link" href="https://twitter.com/MiamiOpen" data-user-id="71048059" rel="noopener">Miami Open</a>
+            </div>
+            <div class="media-tagging-block">
+                <div   class="ProfileTweet-actionButton u-textUserColorHover dropdown-toggle js-dropdown-toggle mysubMenu">click</div>
+                <a class="js-user-profile-link" href="blank">WIKI </a>
+               
+                <div    class="mysubmenu">
+<!--                <div id="WIKI1" onclick="fun()" class="dropdown-menu is-autoCentered mysubmenu">-->
+                        <div class="dropdown-caret">
+                            <div class="caret-outer"></div>
+                            <div class="caret-inner"></div>
+                        </div>
+                        <ul>
+
+                            
+                            <li class="report-link js-actionReport" data-nav="report">
+                                <button type="button" class="dropdown-link">
+
+
+                                    Report Tweet
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-link feedback-action action-prompt" data-feedback-type="DontLike" data-feedback-url="">
+                                    I don't like this Tweet
+                                </button>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li class="js-actionMomentMakerAddTweetToOtherMoment MomentMakerAddTweetToOtherMoment">
+                                <button type="button" class="dropdown-link">Add to other Moment</button>
+                            </li>
+                            
+                        </ul>
+                    </div>
             </div>
             <div>
                 
