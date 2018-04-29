@@ -65,15 +65,17 @@ for (var i = 0; i <= buttonsCount; i += 1) {
 //wiki content
             // One query, example code:
 function WD(item) {
-    url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
-    $.getJSON(url, function (json) {
+    alert(item+" item ");
+    //url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
+   /* $.getJSON(url, function (json) {
         var item_id = Object.keys(json.query.pages)[0]; // THIS DO THE TRICK !
         sent = json.query.pages[item_id].extract;
         result = "<b>En :</b> <t>" + item + "</t> <b>⇒</b> " + sent;
         $('#anchor1').append("<div>"+result+"</div>"); // append
     });
+       */
 }
-WD("ds");
+//WD("ds");
 
 </script>
 
@@ -2394,8 +2396,9 @@ right > TweetBoxToolbar-tweetButton tweet-button
                 <p class="postid1"> ${post.post_id}</p>
                 <p>SESSION ${user}</p>
                     <div id="anchor1"></div>
+                    <b onclick="WD('${post.group1}')">here </b>
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
-                <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s><b class="group1 mysubMenu"> ${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b class="group2 mysubMenu">${post.group2}</b></a> 
+<a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s><b class="group1 mysubMenu" onclick="WD(${post.group1})"> ${post.group1}  </b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b class="group2 mysubMenu">${post.group2}</b></a> 
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand">-->
                 <a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
         
