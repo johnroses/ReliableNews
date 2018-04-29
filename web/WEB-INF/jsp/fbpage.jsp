@@ -21,6 +21,7 @@
 <head>
 <title>Facebook Login JavaScript Example</title>
 <meta charset="UTF-8">
+	<script src="http://connect.facebook.net/en_US/sdk.js"  ></script>
 </head>
 <body>
 <script>
@@ -53,7 +54,8 @@
 
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '{172660350121163}',
+      //appId      : '172660350121163',
+      appId      : '356870054709491',
       cookie     : true,  // enable cookies to allow the server to access 
                           // the session
       xfbml      : true,  // parse social plugins on this page
@@ -96,8 +98,104 @@
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
+    
+    FB.login(function(response) {
+  if (response.status === 'connected') {
+      console.log(" connected here");
+      alert("connected");
+      var accessToken = response.authResponse.accessToken;
+
+      alert(" "+accessToken);
+    // Logged into your app and Facebook.
+  } else {
+      console.log(" not connect");
+    // The person is not logged into this app or we are unable to tell. 
+  }
+});
+
+
   }
 </script>
+<script>
+    function getInfo() {
+			FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id,user_posts'}, function(response) {
+				document.getElementById('status').innerHTML = response.id;
+                                document.getElementById('status').innerHTML = response.user_posts;
+                                consle.log("res ponse "+response.id);
+                                document.getElementById('FF').innerHTML = response.name;
+                                alert(" res"+response.id);
+                                //alert(" "+response.name);
+                                //var accessToken = response.authResponse.accessToken;
+                                //alert("access"+accessToken);
+			});
+		}
+                
+                function feeds() {
+				FB.api('/me',{fields:'last_name'},
+					function (response) {
+                                            if(!response || response.error){
+                                                alert(" error");
+                                            }
+                                            else{
+                                                alert("res "+response.id)
+                                                document.getElementById('FF').innerHTML = response;
+                                            }
+						console.log(response)
+						if (response && !response.error) {
+							/* handle the result */
+                                                          document.getElementById('read').innerHTML = response;
+						}
+					}
+				);
+		}
+                
+                
+                function readPermission() {
+				FB.api(
+					"/debug_token?input_token=EAAWI4WLX8eABAJHx3al6NIi2pLM7ZCZBXEgFUOp2gJQ3VOh7gRbLSdZBZAJgmjcuYcYT7jaqO4mrkOyUeCI2q8kuZBqZCzJajjEqPjsZAFzFnHJPhWWozOGqKRZCCvTARTOS67G04cUyeYi9RAZBSZCrZA1Jq6FOmiyksFnhSKkEaFHOQQbZB5siATE9AQCU7prTGv0ZD",
+					function (response) {
+						console.log(response)
+						if (response && !response.error) {
+							/* handle the result */
+                                                        document.getElementById('read').innerHTML = response;
+						}
+					}
+				);
+		}
+                
+                
+                function postToFacebook() {
+        var body = 'Reading Connect JS documentation';
+
+        FB.api('/me/feed', 'post', { body: body, message: 'My message is ...' }, function(response) {
+          if (!response || response.error) {
+            alert('Error occured');
+          } else {
+            alert('Post ID: ' + response);
+          }
+        });
+    }
+    function newRead(){
+        FB.api('/me', 'get', { access_token: token, fields: 'id,name,gender' }, function(response) {
+    console.log(response);
+     document.getElementById('read').innerHTML = response;
+     alert(" read"+response)
+});
+    }
+    
+    function reading(){
+        FB.api(
+    "/me/feed",
+    function (response) {
+      if (response && !response.error) {
+        /* handle the result */
+        
+        document.getElementById('read').innerHTML = response;
+      }
+    }
+);
+    }
+    </script>
 
 <!--
   Below we include the Login Button social plugin. This button uses
@@ -111,7 +209,7 @@
 </button>
 <div id="status">
 </div>
-
+<div id="FF"></div>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
@@ -120,8 +218,20 @@
   js = d.createElement(s); js.id = id;
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=172660350121163&autoLogAppEvents=1';
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+
+</script>
 
 <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true">button</div>
+<div ><button onclick="getInfo()">read info</button></div>
+<button onclick="feeds()">feeds </button>
+
+
+<button onclick="readPermission()">readPermission </button>
+<div id="read"></div>
+
+   <a href="#" onClick="postToFacebook()">Post to Facebook</a>
+   <a href="#" onClick="newRead()">newRead</a>
+   newRead
 </body>
 </html>
