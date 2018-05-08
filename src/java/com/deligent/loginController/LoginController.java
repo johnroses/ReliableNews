@@ -251,7 +251,7 @@ public class LoginController extends MultiActionController {
         //model.addAttribute("user",usr);
         model.addAttribute("user",jo);
         HttpSession session=request.getSession();
-        session.setAttribute("userNAME", "userNAMEIS");
+        session.setAttribute("username", "userNAMEIS");
         System.out.println("====== tw=           =====");
         return "redirect:/activitypost.htm";  
     }
@@ -315,9 +315,32 @@ public class LoginController extends MultiActionController {
         //return u;
 
     }
+       @RequestMapping("/wikipage1")
+    public ModelAndView wikipage1(@ModelAttribute("usr") logDTO usr) throws IOException {
+        ModelAndView mv = new ModelAndView("Short Wiki Content");
+        return mv;
+    }  
         
-        
-       
+       @RequestMapping("/fblogin")
+    public ModelAndView fblog(@ModelAttribute("usr") logDTO usr) throws IOException {
+        ModelAndView mv = new ModelAndView("fblogin");
+        return mv;
+    }
+    
+    
+    
+    @RequestMapping("/updatelogin")
+    public ModelAndView updateLogin(ModelAndView model) throws IOException {
+        logDTO listUser = new logDTO();
+        model.addObject("listUser", listUser);
+        model.addObject("check", "check");
+        model.setViewName("myfeeds");
+        loginservice.updateLogin();
+       model.addObject("hi","john Object");
+        //System.out.println("");
+        //ModelAndView mv = new ModelAndView("index");
+        return model;
+    }
     /*
     
     	@RequestMapping(value="/savefile",method=RequestMethod.POST)  
