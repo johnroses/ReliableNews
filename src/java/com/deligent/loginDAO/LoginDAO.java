@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -190,5 +191,37 @@ public class LoginDAO implements loginDAOInter {
 //                        return true;
         return null;
     }
+    
+    @Transactional
+    public void updateLogin() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String firstName="john";
+        String userid="102";
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+
+        
+            tx = session.beginTransaction();
+            System.out.println(" begin Login DAO update");          
+            
+
+
+            Query query = session.createQuery("update logDTO u set u.firstName = :firstName WHERE u.userid = :userid");
+            //query.setParameter("post_id", balance + 500);
+            query.setParameter("userid", "102");
+            query.setParameter("firstName", "Jone of Ark");
+            query.executeUpdate();      
+            tx.commit();
+            System.out.println(" commited");
+      /*      
+            logDTO employee = (logDTO)session.get(logDTO.class, 102); 
+         employee.setFirstName(firstName );
+		 session.update(employee); 
+         tx.commit();
+
+    */
+    }
+    
 
 }
