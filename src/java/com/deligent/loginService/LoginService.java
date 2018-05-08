@@ -46,5 +46,15 @@ public class LoginService {
         logDTO x=logindao.validate(listUser);
         return x;
     }
+
+    @Transactional
+    public void ufdpdateLogin() {
+        logindao.updateLogin();
+    }
+
+    @Transactional
+    public void updateLogin() {
+        logindao.updateLogin();
+    }
     
 }
