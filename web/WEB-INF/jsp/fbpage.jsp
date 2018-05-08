@@ -111,6 +111,9 @@
       console.log(" not connect");
     // The person is not logged into this app or we are unable to tell. 
   }
+}, {
+    scope: 'publish_actions,email,user_likes,user_posts',
+    return_scopes:true
 });
 
 
@@ -129,6 +132,10 @@
                                 //alert("access"+accessToken);
 			});
 		}
+                
+                //FB.api('/me?fields=birthday,link,gender,age_range', function(response) {
+   //console.log(response);
+//});
                 
                 function feeds() {
 				FB.api('/me',{fields:'last_name'},
@@ -176,7 +183,7 @@
         });
     }
     function newRead(){
-        FB.api('/me', 'get', { access_token: token, fields: 'id,name,gender' }, function(response) {
+        FB.api('/me', 'get', { access_token: EAACEdEose0cBANLb4D46rNpkUZAdLgOLXKb14rEHIBmoLXpBhkidhe8fWDqMAzwDHXRsZBDgSrribXXidTdbhKb23RaZC9EZAzAxrGhK6lsfcyCZASGUveXeyuFrDhMRJ13gzvZCvHkdwJEv8wNkjUd8HTM1fgoKYpoH00eXZBx3StzC62vE7ymI6Ph8l249nRfu5zUMpgOZBPi6hGZAbUZAfV, fields: 'id,name,gender' }, function(response) {
     console.log(response);
      document.getElementById('read').innerHTML = response;
      alert(" read"+response)
@@ -189,14 +196,56 @@
     function (response) {
       if (response && !response.error) {
         /* handle the result */
-        
+        alert(response.user_posts+ "reading");
+        alert(JSON.stringify(response)+" json");
+        var obj = JSON.parse(response); 
+        alert(obj);
+        for(var i=0;i<response.data.length;i++){
+                           alert(i+" "+ response.data[i].message);
+                           document.getElementById('status').innerHTML=response.data[i].message;
+                       }
         document.getElementById('read').innerHTML = response;
       }
+      else
+          alert(" error;")
     }
 );
     }
+    
+    function getUserDetails(){
+        FB.api(
+                '/me?fields=id,email,cover,name,first_name,last_name,age_range,link,gender,locale,picture,timezone,updated_time,verified',
+                function (response) {
+                    console.log('response');
+                    console.log(response);
+                    var d=JSON.parse(response);
+                    alert("successs "+response[0].toString());
+                    alert(d);
+                }
+            );
+    }
     </script>
+    <script>
+        FB.Event.subscribe('auth.authResponseChange',function(response){
+                    if (response.status === 'connected') {
+      console.log(" connected here");
+      //alert("connected");
+     // var accessToken = response.authResponse.accessToken;
 
+   //   alert(" "+accessToken);
+    // Logged into your app and Facebook.
+  }
+                    
+                });
+                function mymsg(){
+                    FB.api('/me/feed',function(response){
+                       for(var i=0;i<response.data.length;i++){
+                           alert(i+" "+ response.data[i]);
+                           document.getElementById('status').innerHTML=response.data[i];
+                       } 
+                    });
+                }
+        </script>
 <!--
   Below we include the Login Button social plugin. This button uses
   the JavaScript SDK to present a graphical Login button that triggers
@@ -230,8 +279,12 @@
 <button onclick="readPermission()">readPermission </button>
 <div id="read"></div>
 
-   <a href="#" onClick="postToFacebook()">Post to Facebook</a>
-   <a href="#" onClick="newRead()">newRead</a>
+   <a href="#" onclick="postToFacebook()">Post to Facebook</a>
+   <a href="#" onclick="newRead()">newRead</a>
    newRead
+   <button onclick="mymsg()">msg</button>
+   <button onclick="reading()">Reading</button>
+   
+   <button onclick="getUserDetails()">user Details</button>
 </body>
 </html>
