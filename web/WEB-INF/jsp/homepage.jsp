@@ -212,7 +212,7 @@
                                         Get started
                                     </button>
                                     <div>
-                                        <p>Have an account? <a href="/login">Log in</a></p>
+                                        <p>Have an account? <a href="login.htm">Log in</a></p>
                                     </div>
                                 </div>
                                 <div class="StaticLoggedOutHomePage-additionalOptionsBlock hidden">
