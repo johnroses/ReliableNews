@@ -7,11 +7,15 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!--@import url(http://fonts.googleapis.com/css?family=Bangers);
+@import url(http://fonts.googleapis.com/css?family=Allura);-->
 <!DOCTYPE html>
 
 
 <html>
-<!--data-tweet-stat-count is having count value of action event-->
+<!--data-tweet-stat-count is having count value of action event
+https://auth0.com/docs/connections/social/facebook
+-->
     <head>
 
 <!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
@@ -66,16 +70,16 @@ for (var i = 0; i <= buttonsCount; i += 1) {
             // One query, example code:
 function WD(item) {
     alert(item+" item ");
-    //url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
-   /* $.getJSON(url, function (json) {
+    url = "http://en.wikipedia.org/w/api.php?action=query&prop=description&titles=" + item.toString() + "&prop=extracts&exintro&explaintext&format=json&redirects&callback=?";
+    $.getJSON(url, function (json) {
         var item_id = Object.keys(json.query.pages)[0]; // THIS DO THE TRICK !
         sent = json.query.pages[item_id].extract;
         result = "<b>En :</b> <t>" + item + "</t> <b>⇒</b> " + sent;
         $('#anchor1').append("<div>"+result+"</div>"); // append
     });
-       */
+       
 }
-//WD("ds");
+///WD("ds");
 
 </script>
 
@@ -144,13 +148,13 @@ function WD(item) {
     var pp=id.find(".TweetTextSize");
     //var pp=id.find("p");//find for all paragraph children
     //alert(pp+"para");
-    console.log(pp.text())
+    //console.log(pp.text())
     console.log(" Group1");
     
     var b12=id.find("b");
     console.log(b12.text());
     console.log(b12.text().length);
-    console.log("fff");
+    //console.log("fff");
     var g1,g2,g3;
     for (var ii=0;ii<b12.text().length;ii++){
         if(b12.text().charAt(ii)==' '){
@@ -166,33 +170,91 @@ function WD(item) {
         }
             
     }
-    var b13=id.find(".group1");
-    var b14=id.find(".group2");
-    console.log("group1 "+b13.text().length);
-            console.log(b13.text());
-            console.log("group2 "+b14.text().length);
-    console.log(b14.text());
+    var group1=id.find(".group1");
+    var group2=id.find(".group2");
+    console.log("group1 "+group1.text().length);
+            console.log(group1.text());
+            console.log("group2 "+group2.text().length);
+    console.log(group2.text());
     console.log(" postid");
-    var postid12=id.find(".postid1");
+    var postid=id.find(".postid");
+    
     //alert(postid12)
-    console.log(postid12.text()+" postid");
+    console.log(postid.text()+" postid");
+    
+    var userid=id.find(".userid");
     $(this).parent("div").each(function(){
-       console.log("div div") ;
-       console.log($(this).parent("div"));
+       //console.log("div div") ;
+       //console.log($(this).parent("div"));
        
         $(this).parent("div").each(function(){
-           console.log("child");
-           console.log($(this).parent("div"));
+           //console.log("child");
+         //  console.log($(this).parent("div"));
           
         $(this).parent("div").each(function(){
            console.log("parent child");
-           console.log($(this).parent("div"));
+           //console.log($(this).parent("div"));
            //.childNodes);
        });
        });
     });
     
+    // find length of group1, group2, postid, userid
+    if((group1.text().length >1) && (group2.text().length >1 ) &&(postid.text().length >1 )&& (userid.text().length >1)){
+        alert(" all set"+userid.text());
+        //send(group1,group2,postid,userid);
+         var search1 = {"group1": group1.text(),
+                        "group2": group2.text(),
+                        "postid": postid.text(),
+                        "userid":userid.text()                        
+                    };
+        $.ajax({
+    //            alert("inside ajax");
+                type: "GET",
+                //contentType : 'application/json; charset=utf-8',
+                url: "updateProfile.htm",
+                data: search1,
+                //data:JSON.stringify(search),
+                //console.log("HH"),
+                //dataType : 'json',
+                success: function (data) {
+                    alert("success "+data);
+                    $("#tbod").append(data);//working successfully
+                    $("#my1").append(data);
+                    //
+                    //                                        //$("#sample").append(data);
+                    //console.log("SUCCESS,search);
+                    console.log("SUCCESS", data);
+                    console.log(${post_date}+" text msg");
+                    //display(search);
+                },
+                error: function (e) {
+                    alert("Keep Trying!!, You will succeed" + e);
+                    }
+            });
+    }
+        
+    else
+        alert(" missing data"); 
+    if (group1.text().length > 1)
+        console.log(" gropu1"+group1.text());
     
+    else
+        console.log(" group1 missing");
+    if (group2.text().length >1)
+        console.log(" gropu2"+group2.text());
+    
+    else
+        console.log(" missing group2 ");
+    if (postid.text().length >1)
+        console.log(" post id");
+    else
+        console.log(" postid missing");
+    
+    if (userid >1)
+        console.log(" userid");
+    else
+        console.log(" userid missing");
 //    switch ( $( "button" ).index( this ) ) {
 //    case 19 :
 //	alert("ok"+this);
@@ -207,7 +269,41 @@ function WD(item) {
         });
  });
 </script>
-
+<script>
+    function send(group1,group2,postid,userid){
+        alert(" rece");
+        
+        var search = {"group1": group1,
+                        "group2": group2,
+                        "postid": postid,
+                        "userid"userid                        
+                    };
+         $.ajax({
+    //            alert("inside ajax");
+                type: "GET",
+                //contentType : 'application/json; charset=utf-8',
+                url: "updateProfile.htm",
+                data: search,
+                //data:JSON.stringify(search),
+                //console.log("HH"),
+                //dataType : 'json',
+                success: function (data) {
+                    alert("success "+data);
+                    $("#tbod").append(data);//working successfully
+                    $("#my1").append(data);
+                    //
+                    //                                        //$("#sample").append(data);
+                    //console.log("SUCCESS,search);
+                    console.log("SUCCESS", data);
+                    console.log(${post_date}+" text msg");
+                    //display(search);
+                },
+                error: function (e) {
+                    alert("Keep Trying!!, You will succeed" + e);
+                    }
+            });
+    }
+    </script>
 <script>
       $(document).ready(function(){
           
@@ -307,6 +403,28 @@ function find(parentName,childObj)
 //alert(el);
 
 }
+
+
+function findSend(parentName,childObj)
+{
+//alert("re");
+  
+//function reply(parentNode,childObj)
+ var testObj = childObj.parentNode;
+
+    var count = 1;
+      
+    while(testObj.getAttribute('class') != 'content') {
+
+        //alert('My name is ' + testObj.getAttribute('class') + '. Let\'s try moving up one level to see what we get.');
+
+        testObj = testObj.parentNode;
+        count++;
+    }
+  
+  
+}
+
 function retweet(el){
 alert("retwwet"+this+" "+this.parentNode);
 }
@@ -1603,9 +1721,9 @@ right > TweetBoxToolbar-tweetButton tweet-button
                                             <span class="Icon Icon--home Icon--large"></span>
                                             <span class="Icon Icon--homeFilled Icon--large u-textUserColor"></span>
                                             <span class="text" aria-hidden="true">Home</span>
-                                            <span class="u-hiddenVisually a11y-inactive-page-text">Home</span>
+<!--                                            <span class="u-hiddenVisually a11y-inactive-page-text">Home</span>
                                             <span class="u-hiddenVisually a11y-active-page-text">Home, current page.</span>
-                                            <span class="u-hiddenVisually hidden-new-items-text">New Tweets available.</span>
+                                            <span class="u-hiddenVisually hidden-new-items-text">New Tweets available.</span>-->
                                         </a>
                                     </li> 
 <!--                                    <li class="people notifications" data-global-action="connect">
@@ -1810,6 +1928,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
       </span>
        </div>
       <div class="ProfileCardStats">
+          <a href="updatelogin.htm">updatelogin</a>
       <ul class="ProfileCardStats-statList Arrange Arrange--bottom Arrange--equal"><li class="ProfileCardStats-stat Arrange-sizeFit">
                                             <a class="ProfileCardStats-statLink u-textUserColor u-linkClean u-block js-nav js-tooltip" title="345 Tweets" href="https://twitter.com/JohnRoseTweets" data-element-term="tweet_stats">
                                                 <span class="ProfileCardStats-statLabel u-block">Tweets</span>
@@ -1889,7 +2008,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
 
                         <div class="timeline-tweet-box">
                             <div class="home-tweet-box tweet-box component tweet-user">
-                                <img class="top-timeline-tweet-box-user-image avatar size32" src="chi71bCX_normal.jpg" alt="John Rose">
+<!--                                <img class="top-timeline-tweet-box-user-image avatar size32" src="chi71bCX_normal.jpg" alt="John Rose">-->
 <!--                                 <form class="t1-form tweet-form condensed" method="post" target="tweet-post-iframe" data-condensed-text="What’s happening?" action="//upload.twitter.com/i/tweet/create_with_media.iframe" enctype="multipart/form-data" data-poll-composer-rows="3">
 -->
                                 <form class="t1-form tweet-form condensed" method="post" data-condensed-text="What’s happening?" >
@@ -2262,12 +2381,12 @@ right > TweetBoxToolbar-tweetButton tweet-button
     <div class="TweetBoxToolbar">
         
         <div class="TweetBoxToolbar-tweetButton tweet-button">
-            <span class="add-tweet-button ">
+<!--            <span class="add-tweet-button ">
                 <button class="js-add-tweet EdgeButton EdgeButton--secondary EdgeButton--icon EdgeButton--medium js-tooltip" title="Add another Tweet" aria-label="Add another Tweet" data-placement="top" data-delay="150">
                     <span class="Icon Icon--add Icon--medium"></span>
                 </button>
 
-            </span>
+            </span>-->
 <!--    <form method="POST" id="f1">
         <input type="text" id="user">
         <button id="but"  type="button" value="submit">MY For POST</button>
@@ -2322,13 +2441,15 @@ right > TweetBoxToolbar-tweetButton tweet-button
 
         <div class="stream-item-header">
             <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="https://twitter.com/Petra_Kvitova" data-user-id="533202479">
-                <img class="avatar js-action-profile-avatar" src="ADMvYXZc_bigger.jpg" alt="">
+<!--                <img class="avatar js-action-profile-avatar" src="ADMvYXZc_bigger.jpg" alt="">-->
                 <span class="FullNameGroup">
-                    <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">Petra Kvitova</strong><span>â€</span><span class="UserBadges"><span class="Icon Icon--verified"><span class="u-hiddenVisually">Verified account</span></span></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b class="post_by">Petra_Kvitova ${post.post_by}</b></span></a>
+                    <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">Petra Kvitova</strong>
+<!--                    <span>â€</span>-->
+                    <span class="UserBadges"><span class="Icon Icon--verified"><span class="u-hiddenVisually">Verified account</span></span></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b class="post_by">Petra_Kvitova ${post.post_by}</b></span></a>
 
 
             <small class="time">
-                <a href="https://twitter.com/Petra_Kvitova/status/973348886512328704" class="tweet-timestamp js-permalink js-nav js-tooltip" title="5:33 AM - 13 Mar 2018" data-conversation-id="973348886512328704"><span class="_timestamp js-short-timestamp js-relative-timestamp" data-time="1520899433" data-time-ms="1520899433000" data-long-form="true" aria-hidden="true">8h</span><span class="u-hiddenVisually" data-aria-label-part="last">8 hours ago ${post.post_date}</span></a>
+                <a href="https://twitter.com/Petra_Kvitova/status/973348886512328704" class="tweet-timestamp js-permalink js-nav js-tooltip" title="5:33 AM - 13 Mar 2018" data-conversation-id="973348886512328704"><span class="_timestamp js-short-timestamp js-relative-timestamp" data-time="1520899433" data-time-ms="1520899433000" data-long-form="true" aria-hidden="true">8h ${post.post_date}</span><span class="u-hiddenVisually" data-aria-label-part="last">8 hours ago ${post.post_date}</span></a>
             </small>
 
             <div class="ProfileTweet-action ProfileTweet-action--more js-more-ProfileTweet-actions">
@@ -2392,13 +2513,21 @@ right > TweetBoxToolbar-tweetButton tweet-button
         <div class="js-tweet-text-container">
             
             <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en" id="my1">All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then ${post.post_msg}
-                <p>${post.id}</p>
-                <p class="postid1"> ${post.post_id}</p>
-                <p>SESSION ${user}</p>
+                <p style="display:none" class="postid">${post.post_id}</p>
+                <p  class="userid">${post.userid}</p>
                     <div id="anchor1"></div>
-                    <b onclick="WD('${post.group1}')">here </b>
+                    <b onclick="WD('${post.group1}')">Group1 </b>
+                    <b onclick="WD('${post.group2}')">Group2 </b>
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
-<a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s><b class="group1 mysubMenu" onclick="WD(${post.group1})"> ${post.group1}  </b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b class="group2 mysubMenu">${post.group2}</b></a> 
+<!--<a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s>-->
+<a href="#" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059" onclick="WD('${post.group1}')"><s>#</s>
+    <b class="group1 mysubMenu" onclick="WD('${post.group1}')"> ${post.group1}  </b>
+</a> 
+    
+    
+<a href="#" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr" onclick="WD('${post.group2}')"><s>#</s>
+    <b class="group2 mysubMenu" onclick="WD('${post.group2}')">${post.group2}</b>
+</a> 
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand">-->
                 <a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
         
@@ -2502,7 +2631,7 @@ image is commented
                           <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">24</span>
                       </span>
                   </button>-->
-                  <button onclick ="find('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
+                  <button onclick ="findSend('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Reply">
                           <span class="Icon Icon--medium Icon--reply"></span>
                           <span class="u-hiddenVisually">Reply</span>
@@ -2631,13 +2760,15 @@ image is commented
 
         <div class="stream-item-header">
             <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="https://twitter.com/Petra_Kvitova" data-user-id="533202479">
-                <img class="avatar js-action-profile-avatar" src="ADMvYXZc_bigger.jpg" alt="">
+<!--                <img class="avatar js-action-profile-avatar" src="ADMvYXZc_bigger.jpg" alt="">-->
                 <span class="FullNameGroup">
-                    <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">Petra Kvitova ${post.post_by}</strong><span>â€</span><span class="UserBadges"><span class="Icon Icon--verified"><span class="u-hiddenVisually">Verified account</span></span></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>Petra_Kvitova</b></span></a>
+                    <strong class="fullname show-popup-with-id u-textTruncate " data-aria-label-part="">Petra Kvitova ${post.post_by}</strong>
+<!--                    <span>â€</span>-->
+                    <span class="UserBadges"><span class="Icon Icon--verified"><span class="u-hiddenVisually">Verified account</span></span></span><span class="UserNameBreak">&nbsp;</span></span><span class="username u-dir u-textTruncate" dir="ltr" data-aria-label-part="">@<b>Petra_Kvitova</b></span></a>
 
 
             <small class="time">
-                <a href="https://twitter.com/Petra_Kvitova/status/973348886512328704" class="tweet-timestamp js-permalink js-nav js-tooltip" title="5:33 AM - 13 Mar 2018" data-conversation-id="973348886512328704"><span class="_timestamp js-short-timestamp js-relative-timestamp" data-time="1520899433" data-time-ms="1520899433000" data-long-form="true" aria-hidden="true">8h</span><span class="u-hiddenVisually" data-aria-label-part="last">8 hours ago ${post.post_date}</span></a>
+                <a href="https://twitter.com/Petra_Kvitova/status/973348886512328704" class="tweet-timestamp js-permalink js-nav js-tooltip" title="5:33 AM - 13 Mar 2018" data-conversation-id="973348886512328704"><span class="_timestamp js-short-timestamp js-relative-timestamp" data-time="1520899433" data-time-ms="1520899433000" data-long-form="true" aria-hidden="true">8h ${post.post_date}</span><span class="u-hiddenVisually" data-aria-label-part="last">8 hours ago ${post.post_date}</span></a>
             </small>
 
             <div class="ProfileTweet-action ProfileTweet-action--more js-more-ProfileTweet-actions">
@@ -2705,14 +2836,8 @@ image is commented
         <div class="js-tweet-text-container">
             <p>${post.post_msg}</p>
             <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en">All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then 
-<!--            <table>
-            <td id="tbod" >${username}</td>
-                <td>${pName}</td>
                 
-                
-            </table>-->
-                
-            <p>${post.post_msg} : ${post.group1}</p>
+            
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
                 <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>@</s><b class="mysubMenu">${post.group1}</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b class="mysubMenu">${post.group2}</b></a> 
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand">-->
