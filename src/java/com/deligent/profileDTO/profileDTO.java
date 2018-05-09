@@ -5,13 +5,22 @@
  */
 package com.deligent.profileDTO;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Deligent
  */
-public class profileDTO {
+@Entity
+@Table(name="myprofile")
+
+public class profileDTO implements Serializable{
     
 //    String interest1;
 //    
@@ -21,8 +30,15 @@ public class profileDTO {
 //    
     //area of interest11111: interest-1,interest-2,interest-3,interest-4
 //place of interest : current, hometown, Living, Favorite
-
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private int id;
+    
+    
+    @Column
+    private String userid;
     
     @Column
     private String interest1;
@@ -37,6 +53,15 @@ public class profileDTO {
     private String interest4;
     
     @Column
+    private String hobby1;
+    
+    @Column
+    private String studysubject1;
+    
+    @Column
+    private String studysubject2;
+    
+    @Column
     private String currentplace;
     
     @Column
@@ -46,8 +71,26 @@ public class profileDTO {
     private String living;
     
     @Column
-    private String favorite;
+    private String favoriteplace;
 
+    @Column
+    private String support;
+
+    @Column
+    private String not_support;
+
+    @Column
+    private String  neutral;
+    
+    @Column
+    private int support_count;
+    
+    @Column
+    private int not_support_count;
+    
+    @Column
+    private int neutral_count;
+    
     public int getId() {
         return id;
     }
@@ -55,6 +98,16 @@ public class profileDTO {
     public void setId(int id) {
         this.id = id;
     }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+    
+    
 
     public String getInterest1() {
         return interest1;
@@ -112,14 +165,87 @@ public class profileDTO {
         this.living = living;
     }
 
-    public String getFavorite() {
-        return favorite;
+        public String getStudysubject1() {
+        return studysubject1;
     }
 
-    public void setFavorite(String favorite) {
-        this.favorite = favorite;
+    public void setStudysubject1(String studysubject1) {
+        this.studysubject1 = studysubject1;
     }
 
+    public String getStudysubject2() {
+        return studysubject2;
+    }
+
+    public void setStudysubject2(String studysubject2) {
+        this.studysubject2 = studysubject2;
+    }
+
+    
+    
+    public String getHobby1() {
+        return hobby1;
+    }
+
+    public void setHobby1(String hobby1) {
+        this.hobby1 = hobby1;
+    }
+
+    public String getFavoriteplace() {
+        return favoriteplace;
+    }
+
+    public void setFavoriteplace(String favoriteplace) {
+        this.favoriteplace = favoriteplace;
+    }
+
+    public String getSupport() {
+        return support;
+    }
+
+    public void setSupport(String support) {
+        this.support = support;
+    }    
+
+    public String getNot_support() {
+        return not_support;
+    }
+
+    public void setNot_support(String not_support) {
+        this.not_support = not_support;
+    }
+
+    public String getNeutral() {
+        return neutral;
+    }
+
+    public void setNeutral(String neutral) {
+        this.neutral = neutral;
+    }
+
+    public int getSupport_count() {
+        return support_count;
+    }
+
+    public void setSupport_count(int support_count) {
+        this.support_count = support_count;
+    }
+
+    public int getNot_support_count() {
+        return not_support_count;
+    }
+
+    public void setNot_support_count(int not_support_count) {
+        this.not_support_count = not_support_count;
+    }
+
+    public int getNeutral_count() {
+        return neutral_count;
+    }
+
+    public void setNeutral_count(int neutral_count) {
+        this.neutral_count = neutral_count;
+    }
     
 
     
