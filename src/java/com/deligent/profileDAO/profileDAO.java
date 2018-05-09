@@ -8,6 +8,7 @@ package com.deligent.profileDAO;
 import com.deligent.profileDTO.profileDTO;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -75,6 +76,62 @@ public class profileDAO {
          return mymsg;
 
         
+    }
+    
+    @Transactional
+    public void updateProfile(profileDTO profile) {
+    //public List<profileDTO> updateProfile(profileDTO profile) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        String support="yes";
+                int userid=102;
+        
+            tx = session.beginTransaction();
+            System.out.println(" begin");
+            
+            
+            String hql="update myprofile set support='"+support+" 'where userid='"+userid+";";
+            Query qu=session.createQuery(hql);
+            qu.executeUpdate();
+            tx.commit();
+            /*
+            Query query = session.createQuery("UPDATE myprofile u SET u.support = :support WHERE u.userid = :userid");
+            //query.setParameter("post_id", balance + 500);
+            query.setParameter("userid", "102");
+            query.setParameter("support", "1");
+            query.executeUpdate();
+        */
+
+    
+    }
+    @Transactional
+    public void updateProfile1(profileDTO profile) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+
+        
+            tx = session.beginTransaction();
+            System.out.println(" begin update profile");
+            
+            
+
+
+            Query query = session.createQuery("UPDATE profileDTO u SET u.support = :support WHERE u.userid = :userid");
+            //query.setParameter("post_id", balance + 500);
+            query.setParameter("userid", "102");
+            query.setParameter("support", "d");
+            query.executeUpdate();
+            
+            tx.commit();
+        
+
+    
     }
     
 }
