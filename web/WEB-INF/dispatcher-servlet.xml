@@ -30,9 +30,12 @@
     <context:component-scan base-package="com.deligent.postController"/>
     <context:component-scan base-package="com.deligent"/>
     <context:component-scan base-package="com.deligent.loginDAO"/>
+    <context:component-scan base-package="com.deligent.profileController"/>
     <!--    dao,service,controller,confi-->
     <context:component-scan base-package="com.deligent.msgController"/>
     <context:component-scan base-package="com.deligent.msgDAO"/>
+       
+   <context:component-scan base-package="com.deligent.profileDAO"/>
    
     
     
