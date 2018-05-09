@@ -119,13 +119,14 @@ public class profileDAO {
             tx = session.beginTransaction();
             System.out.println(" begin update profile");
             
+            int x=1;
+
             
-
-
-            Query query = session.createQuery("UPDATE profileDTO u SET u.support = :support WHERE u.userid = :userid");
+            Query query = session.createQuery("UPDATE profileDTO u SET u.support = :support, u.support_count=:support_count WHERE u.userid = :userid");
             //query.setParameter("post_id", balance + 500);
             query.setParameter("userid", "102");
-            query.setParameter("support", "d");
+            query.setParameter("support", "JJ"+"d");
+            query.setParameter("support_count",x +x);
             query.executeUpdate();
             
             tx.commit();
