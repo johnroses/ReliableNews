@@ -3,10 +3,13 @@
     Created on : Mar 30, 2018, 8:03:46 PM
     Author     : Deligent
 --%>
+<!-- WD item should be placed on the triggered div/button 
+-->
 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib  uri="http://displaytag.sf.net" prefix="display"%>
 <!--@import url(http://fonts.googleapis.com/css?family=Bangers);
 @import url(http://fonts.googleapis.com/css?family=Allura);-->
 <!DOCTYPE html>
@@ -75,7 +78,7 @@ function WD(item) {
         var item_id = Object.keys(json.query.pages)[0]; // THIS DO THE TRICK !
         sent = json.query.pages[item_id].extract;
         result = "<b>En :</b> <t>" + item + "</t> <b>⇒</b> " + sent;
-        $('#anchor1').append("<div>"+result+"</div>"); // append
+        $('.anchor1').append("<div>"+result+"</div>"); // append
     });
        
 }
@@ -137,14 +140,66 @@ function WD(item) {
     </script>-->
     
 <script>
+    $(document).ready(function () {
+        $("span5").click(function(){
+           alert("Para"); 
+        });
+        
+    }); 
+</script>
+<script>
 
  $(document).ready(function () {
-    $("button").click(function() {
+     var supportCount=0;
+     $("span").click(function() {
+         //alert($(this).attr('id'));//no o/p
+         alert("CLass");
+         //alert($(this).attr('class'));
+         //find substring of span class having support,nonsupport,neutral class 
+         var className1=$(this).attr('class');
+         
+        // $( "button" ).index( this ) 
+                 var spanid=$( "span").index( this );
+                 //alert(spanid);
+                // $(spanid).append("HIIII");
+    //$('button').click(function() {
     //alert("button click fun"); // or alert($(this).attr('id'));
     //console.log($(this).find("div");
+    //alert($(this));
     
+    var chi=$(this).children("span");
+    console.log(chi[0]+" log");
+    var x=$(this).find("*");
+    //alert(x[4].className);
+    var supportString=x[4].className.toString();
+    var lenSupport=supportString.search('support');
+    //alert(" ok");
+
+    //alert(supportString.indexOf('support',40));
+    var nonSupportString=x[4].className.toString();
+    var lenNonSupport=nonSupportString.search('nonsupport');
+    
+    var neutralString=x[4].className.toString();
+    var lenNeutral=neutralString.search('neutral');
+    
+    var x234=$(this).find("*");
+    //alert(x234[0].classList.contains(".ProfileTweet-actionCountForPresentation support");
+    //var mycla=$(this).attr("class");
+    //alert($(mycla,$(this)).html());
+    //alert(mycla+" myclass");
+    var my1=this.className;
+    //var alert1=this.find("span");
+    //alert(alert1[0]);
+    //alert($(this).find('span').className);
+    //alert(my1+" my1");
+    var my2=this.classList;
+    //alert(my2+" my2");
     var id = $(this).closest('.content');
    // alert(id+" class")
+    var id23 = $(this).closest('.ProfileTweet-actionButton js-actionButton js-actionReply');
+    //alert(id23.text()+" closest");
+   var p211=id23.find(".js-actionButton js-actionReply");
+   //alert(p211.text()+" find another");
     var pp=id.find(".TweetTextSize");
     //var pp=id.find("p");//find for all paragraph children
     //alert(pp+"para");
@@ -173,16 +228,18 @@ function WD(item) {
     var group1=id.find(".group1");
     var group2=id.find(".group2");
     console.log("group1 "+group1.text().length);
-            console.log(group1.text());
-            console.log("group2 "+group2.text().length);
+    console.log(group1.text());
+    console.log("group2 "+group2.text().length);
     console.log(group2.text());
-    console.log(" postid");
+//    console.log(" postid");
     var postid=id.find(".postid");
     
     //alert(postid12)
-    console.log(postid.text()+" postid");
+    console.log(postid.text()+" here postid");
     
     var userid=id.find(".userid");
+    //alert(userid.text()+"userid fetched");
+    
     $(this).parent("div").each(function(){
        //console.log("div div") ;
        //console.log($(this).parent("div"));
@@ -191,70 +248,175 @@ function WD(item) {
            //console.log("child");
          //  console.log($(this).parent("div"));
           
-        $(this).parent("div").each(function(){
-           console.log("parent child");
-           //console.log($(this).parent("div"));
-           //.childNodes);
-       });
-       });
-    });
-    
-    // find length of group1, group2, postid, userid
-    if((group1.text().length >1) && (group2.text().length >1 ) &&(postid.text().length >1 )&& (userid.text().length >1)){
-        alert(" all set"+userid.text());
-        //send(group1,group2,postid,userid);
-         var search1 = {"group1": group1.text(),
-                        "group2": group2.text(),
-                        "postid": postid.text(),
-                        "userid":userid.text()                        
-                    };
-        $.ajax({
-    //            alert("inside ajax");
-                type: "GET",
-                //contentType : 'application/json; charset=utf-8',
-                url: "updateProfile.htm",
-                data: search1,
-                //data:JSON.stringify(search),
-                //console.log("HH"),
-                //dataType : 'json',
-                success: function (data) {
-                    alert("success "+data);
-                    $("#tbod").append(data);//working successfully
-                    $("#my1").append(data);
-                    //
-                    //                                        //$("#sample").append(data);
-                    //console.log("SUCCESS,search);
-                    console.log("SUCCESS", data);
-                    console.log(${post_date}+" text msg");
-                    //display(search);
-                },
-                error: function (e) {
-                    alert("Keep Trying!!, You will succeed" + e);
-                    }
+        $(this).parent("div").each(function () {
+                        console.log("parent child");
+                        //console.log($(this).parent("div"));
+                        //.childNodes);
+                    });
+                });
             });
-    }
+            if (group1.text().length < 1) {
+                alert("group1");
+                console.log(" grou1 missing");
+            }
+            if (group2.text().length < 1) {
+                console.log(" grou2 missing");
+                alert("group1");
+            }
+            if (postid.text().length < 1) {
+                console.log(" postid missing");
+                alert("postid");
+            }
+            if (userid.text().length < 1) {
+                console.log(" userid missing here"+userid.text()+" len"+userid.text().length);
+                alert("userid");
+            }
+            // find length of group1, group2, postid, userid
+            if ((group1.text().length > 1) && (group2.text().length > 1) && (postid.text().length > 1) && (userid.text().length >= 1))
+            {
+                alert(" postid is "+postid.text());
+                var search1 = {"group1": group1.text(),
+                    "group2": group2.text(),
+                    "postid": postid.text(),
+                    "userid": userid.text()
+                };
+                    if(lenSupport>0){
+                        //alert("supportProfile called");
+                        //supportCount=supportProfile(search1);
+                        $.ajax({
+                    //            alert("inside ajax");
+                    type: "GET",
+                    //contentType : 'application/json; charset=utf-8',
+                    url: "updateSupportProfile.htm",
+                    data: search1,
+                    //data:JSON.stringify(search),
+                    //console.log("HH"),
+                    //dataType : 'json',
+                    success: function (result) {
+                        alert("success @"+result);
+                       // $(spanid).append(supportCount);
+                       // $(this).append(result.toLocaleString());
+                        //supportCount=result.toString();
+                        console.log("OUTPUT");
+                        supportCount=result.toString();
+                        console.log(supportCount);
+                        console.log(result);
+                        //alert(supportCount.toLocaleString());
+//                        $(".ProfileTweet-actionCountForPresentation support").append(data);
+                       //$().append(data); 
+                      // supportCount=data;
+//                       $(".TweetTextSize  js-tweet-text tweet-text").append(data);
+                       $(".myajax").append(result.toString());
+                      // $(this).append(result.toString());
+                        //$("#support1").append(data);
+                       // $(".support12").append(data);
+                        
+                        //$("#tbod").append(data);//working successfully
+                        //$("#my1").append(data);
+                        //$(".ProfileTweet-actionCountForPresentation support").val(data);
+                        //
+                        //                                        //$("#sample").append(data);
+                        //console.log("SUCCESS,search);
+                        console.log("success");
+                       // console.log(data);
+                        //console.log($ {post_date});
+                        //console.log(" text msg");
+                        //display(search);
+                    },
+                    error: function (e) {
+                        alert("Keep Trying!!, You will succeed Now" + e);
+                    }
+                });
+                       // $(this).append("JOHN");
+                       //supportCount=3;
+                        $(this).append(supportCount.toString());//placing corresponding span 
+                        //$(this).append("Test");
+                        //$(spanid).append("HI");
+                        //var spanid3=$( "span").index( spanid );
         
-    else
-        alert(" missing data"); 
-    if (group1.text().length > 1)
-        console.log(" gropu1"+group1.text());
-    
-    else
-        console.log(" group1 missing");
-    if (group2.text().length >1)
-        console.log(" gropu2"+group2.text());
-    
-    else
-        console.log(" missing group2 ");
-    if (postid.text().length >1)
-        console.log(" post id");
-    else
-        console.log(" postid missing");
-    
-    if (userid >1)
-        console.log(" userid");
-    else
-        console.log(" userid missing");
+                        
+                        $(".ProfileTweet-actionCountForPresentation support").append("23");
+                        alert("function called"+supportCount);
+                        //supportProfile(group1.text(),group2.text(),postid.text(),userid.text());
+                    }
+                    else if(lenNonSupport>0){
+                        nonSupportProfile(search1);
+                        alert("nonSupportProfile called");
+                            //nonSupportProfile(group1.text(),group2.text(),postid.text(),userid.text());
+                        }
+                    else if(lenNeutral>0){
+                        neutralProfile(search1);
+                        alert("neutralProfile called ");
+                        //neutralProfile(group1.text(),group2.text(),postid.text(),userid.text());
+                        }
+                //alert(" all set" + userid.text());
+                //var text_val = $(this).children(".ProfileTweet-actionCountForPresentation").text());
+                //var text_val = $(this).next(".ProfileTweet-actionCountForPresentation").text();
+                // var text_val1 = $(".ProfileTweet-actionButton js-actionButton js-actionReply").find('.ProfileTweet-actionCountForPresentation').text();
+
+                //var text_val2 = id.children(".ProfileTweet-actionCountForPresentation").text());
+                // alert(text_val2);
+
+                var text_val4 = id.find(".support");
+                //alert(text_val4.text());
+                
+                var myid = $(this).closest('.ProfileTweet-actionCountForPresentation support');
+                console.log(myid + " myid");
+                //alert(" myid");
+                // console.log(text_val2+" text_val3");
+                // console.log(text_val3+" text_val3");
+                //alert(text_val+ " mytext");
+                //send(group1,group2,postid,userid);
+               
+            /*temporarily disabled
+             * var search1 = {"group1": group1.text(),
+                    "group2": group2.text(),
+                    "postid": postid.text(),
+                    "userid": userid.text()
+                };*/
+        /*ajax works fine, it call general updateprofile, specified update profile methods are created
+
+                $.ajax({                    
+                    type: "GET",
+                    //contentType : 'application/json; charset=utf-8',
+                    url: "updateProfile.htm",
+                    data: search1,
+                    //data:JSON.stringify(search),
+                    
+                    //dataType : 'json',
+                    success: function (data) {                        
+                        //$("#tbod").append(data);//working successfully
+                        //$("#my1").append(data);                        
+                        //$("#sample").append(data);                        
+                        console.log(${post_date} + " text msg");
+                        //display(search);
+                    },
+                    error: function (e) {
+                        alert("Keep Trying!!, You will succeed" + e);
+                    }
+                });
+                */
+            } else
+                alert(" missing data");
+            if (group1.text().length > 1)
+                console.log(" gropu1" + group1.text());
+
+            else
+                console.log(" group1 missing");
+            if (group2.text().length > 1)
+                console.log(" gropu2" + group2.text());
+
+            else
+                console.log(" missing group2 ");
+            if (postid.text().length > 1)
+                console.log(" post id");
+            else
+                console.log(" postid missing");
+
+            if (userid.text().length > 1)
+                console.log(" userid"+userid.text().length+" userid"+userid.text());
+            else
+                console.log(" userid missing len"+userid.text().length+" userid"+userid.text());
 //    switch ( $( "button" ).index( this ) ) {
 //    case 19 :
 //	alert("ok"+this);
@@ -267,8 +429,148 @@ function WD(item) {
 //            //    break;
 // }
         });
- });
+        function supportProfile( search1)
+        {
+        //create user defined jquery ()
+        $.ajax({
+                    //            alert("inside ajax");
+                    type: "GET",
+                    //contentType : 'application/json; charset=utf-8',
+                    url: "updateSupportProfile.htm",
+                    data: search1,
+                    //data:JSON.stringify(search),
+                    //console.log("HH"),
+                    //dataType : 'json',
+                    success: function (result) {
+                        alert("success @"+result);
+                        //$(this).append(supportCount);
+                       // $(this).append(result.toLocaleString());
+                        //supportCount=result.toString();
+                        console.log("OUTPUT");
+                        supportCount=result.toString();
+                        console.log(supportCount);
+                        console.log(result);
+                        //alert(supportCount.toLocaleString());
+//                        $(".ProfileTweet-actionCountForPresentation support").append(data);
+                       //$().append(data); 
+                      // supportCount=data;
+//                       $(".TweetTextSize  js-tweet-text tweet-text").append(data);
+                       $(".myajax").append(result.toString());
+                      // $(this).append(result.toString());
+                        //$("#support1").append(data);
+                       // $(".support12").append(data);
+                        
+                        //$("#tbod").append(data);//working successfully
+                        //$("#my1").append(data);
+                        //$(".ProfileTweet-actionCountForPresentation support").val(data);
+                        //
+                        //                                        //$("#sample").append(data);
+                        //console.log("SUCCESS,search);
+                        console.log("success");
+                       // console.log(data);
+                        //console.log($ {post_date});
+                        //console.log(" text msg");
+                        //display(search);
+                    },
+                    error: function (e) {
+                        alert("Keep Trying!!, You will succeed Now" + e);
+                    }
+                });
+                return supportCount;
+        
+    }
+    });
 </script>
+<script>
+    function supportProfile2( search1)
+    {
+        //create user defined jquery ()
+        $.ajax({
+                    //            alert("inside ajax");
+                    type: "GET",
+                    //contentType : 'application/json; charset=utf-8',
+                    url: "updateSupportProfile.htm",
+                    data: search1,
+                    //data:JSON.stringify(search),
+                    //console.log("HH"),
+                    //dataType : 'json',
+                    success: function (data) {
+                        alert("success 1"+data);
+                        $(".ProfileTweet-actionCountForPresentation support").append(data);
+                        $("#support1").append(data);
+                        //$("#tbod").append(data);//working successfully
+                        //$("#my1").append(data);
+                        //$(".ProfileTweet-actionCountForPresentation support").val(data);
+                        //
+                        //                                        //$("#sample").append(data);
+                        //console.log("SUCCESS,search);
+                        //console.log(data);
+                       // console.log($ {post_date});
+                       // console.log(" text msg");
+                        //display(search);
+                    },
+                    error: function (e) {
+                        alert("Keep Trying!!, You will succeed Now" + e);
+                    }
+                });
+        
+    }
+    function nonSupportProfile(search1)
+    {
+        $.ajax({
+                    //            alert("inside ajax");
+                    type: "GET",
+                    //contentType : 'application/json; charset=utf-8',
+                    url: "updateNonSupportProfile.htm",
+                    data: search1,
+                    //data:JSON.stringify(search),
+                    //console.log("HH"),
+                    //dataType : 'json',
+                    success: function (data) {
+                        //alert("success "+data);
+                        //$("#tbod").append(data);//working successfully
+                        //$("#my1").append(data);
+                        //
+                        //                                        //$("#sample").append(data);
+                        //console.log("SUCCESS,search);
+                        //console.log("SUCCESS", data);
+                        console.log(${post_date} + " text msg");
+                        //display(search);
+                    },
+                    error: function (e) {
+                        alert("Keep Trying!!, You will succeed" + e);
+                    }
+                });
+        
+    }
+    function neutralProfile(search1)
+    {
+        $.ajax({
+                    //            alert("inside ajax");
+                    type: "GET",
+                    //contentType : 'application/json; charset=utf-8',
+                    url: "updateNeutralProfile.htm",
+                    data: search1,
+                    //data:JSON.stringify(search),
+                    //console.log("HH"),
+                    //dataType : 'json',
+                    success: function (data) {
+                        //alert("success "+data);
+                        //$("#tbod").append(data);//working successfully
+                        //$("#my1").append(data);
+                        //
+                        //                                        //$("#sample").append(data);
+                        //console.log("SUCCESS,search);
+                        //console.log("SUCCESS", data);
+                        console.log(${post_date} + " text msg");
+                        //display(search);
+                    },
+                    error: function (e) {
+                        alert("Keep Trying!!, You will succeed" + e);
+                    }
+                });
+    }
+    </script>
 <script>
     function send(group1,group2,postid,userid){
         alert(" rece");
@@ -276,7 +578,7 @@ function WD(item) {
         var search = {"group1": group1,
                         "group2": group2,
                         "postid": postid,
-                        "userid"userid                        
+                        "userid":userid                        
                     };
          $.ajax({
     //            alert("inside ajax");
@@ -288,13 +590,13 @@ function WD(item) {
                 //console.log("HH"),
                 //dataType : 'json',
                 success: function (data) {
-                    alert("success "+data);
+                    //alert("success "+data);
                     $("#tbod").append(data);//working successfully
                     $("#my1").append(data);
                     //
                     //                                        //$("#sample").append(data);
                     //console.log("SUCCESS,search);
-                    console.log("SUCCESS", data);
+                    //console.log("SUCCESS", data);
                     console.log(${post_date}+" text msg");
                     //display(search);
                 },
@@ -404,26 +706,27 @@ function find(parentName,childObj)
 
 }
 
-
-function findSend(parentName,childObj)
-{
-//alert("re");
-  
-//function reply(parentNode,childObj)
- var testObj = childObj.parentNode;
-
-    var count = 1;
-      
-    while(testObj.getAttribute('class') != 'content') {
-
-        //alert('My name is ' + testObj.getAttribute('class') + '. Let\'s try moving up one level to see what we get.');
-
-        testObj = testObj.parentNode;
-        count++;
-    }
-  
-  
-}
+//
+//function findSend(parentName,childObj)
+//{
+////alert("re");
+//  
+////function reply(parentNode,childObj)
+// var testObj = childObj.parentNode;
+//
+//    var count = 1;
+//      
+//    while(testObj.getAttribute('class') != 'content') {
+//
+//        //alert('My name is ' + testObj.getAttribute('class') + '. Let\'s try moving up one level to see what we get.');
+//
+//        testObj = testObj.parentNode;
+//        count++;
+//    }
+//    alert(testObj.getAttribute('class'));
+//  
+//  
+//}
 
 function retweet(el){
 alert("retwwet"+this+" "+this.parentNode);
@@ -665,18 +968,19 @@ var po=$("#tweet-box-home-timeline").text();
                 //console.log("HH"),
                 //dataType : 'json',
                 success: function (data) {
-                    alert("success "+data);
+                   // alert("success "+data);
                     $("#tbod").append(data);//working successfully
                     $("#my1").append(data);
                     //
                     //                                        //$("#sample").append(data);
                     //console.log("SUCCESS,search);
-                    console.log("SUCCESS", data);
+                    //console.log("SUCCESS", data);
                     console.log(${post_date}+" text msg");
+                    var te=document.getElementById("tweet-box-home-timeline").text("");
                     //display(search);
                 },
                 error: function (e) {
-                    alert("Keep Trying!!, You will succeed" + e);
+                    alert("Post isn't inserted Keep Trying!!, You will succeed" + e);
                     }
             });
                     
@@ -1631,9 +1935,10 @@ span11.className="Icon Icon--medium Icon--dm";
 
     </head>
     <body class="three-col logged-in user-style-JohnRoseTweets ms-windows enhanced-mini-profile no-nav-banners supports-drag-and-drop" data-fouc-class-names="swift-loading no-nav-banners" dir="ltr">
-<script>
-<!-- $('textbox').click(function) -->
-            $(document).ready(function () {
+<!--<script>-->
+<!-- $('textbox').click(function)
+  //         $( document).ready(function () { 
+
 
 //                $('#tweet-box-home-timeline').keyup(function () 
         //        $('#tweet-box-home-timeline').focus(function () {
@@ -1673,14 +1978,14 @@ alert("hi here");
 <script>
 <!-- user function-->
 <!--function posttweet(){
-.tweet-form.condensed .TweetBoxToolbar.display="flex";
+//. tweet-form.condensed .TweetBoxToolbar.display="flex";
 
-tweet-action disabled EdgeButton EdgeButton--primary js-tweet-btn -- enabled ="enabled". class name is changed to  tweet-action EdgeButton EdgeButton--primary js-tweet-btn
--->
-alert("working");
-top>  TweetBoxToolbar
-right > TweetBoxToolbar-tweetButton tweet-button
-}
+// tweet-action disabled EdgeButton EdgeButton--primary js-tweet-btn -- enabled ="enabled". class name is changed to  tweet-action EdgeButton EdgeButton--primary js-tweet-btn
+
+//alert("working");
+//top>  TweetBoxToolbar
+//right > TweetBoxToolbar-tweetButton tweet-button
+
 </script>
         <div id="kb-shortcuts-msg" class="visuallyhidden">
             <h2>Keyboard Shortcuts</h2>
@@ -1717,7 +2022,8 @@ right > TweetBoxToolbar-tweetButton tweet-button
                             
 <ul class="nav js-global-actions" id="global-actions">
 <li id="global-nav-home" class="home active" data-global-action="home">
-                                        <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="https://twitter.com/" data-component-context="home_nav" data-nav="home">
+<!--    <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="#" data-component-context="home_nav" data-nav="home"> leading to twitter-->
+                                        <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="myfeeds.htm" data-component-context="home_nav" data-nav="home">
                                             <span class="Icon Icon--home Icon--large"></span>
                                             <span class="Icon Icon--homeFilled Icon--large u-textUserColor"></span>
                                             <span class="text" aria-hidden="true">Home</span>
@@ -1929,6 +2235,8 @@ right > TweetBoxToolbar-tweetButton tweet-button
        </div>
       <div class="ProfileCardStats">
           <a href="updatelogin.htm">updatelogin</a>
+<!--          <p id=" support1">x</p>
+          <span class=" support12"></span>-->
       <ul class="ProfileCardStats-statList Arrange Arrange--bottom Arrange--equal"><li class="ProfileCardStats-stat Arrange-sizeFit">
                                             <a class="ProfileCardStats-statLink u-textUserColor u-linkClean u-block js-nav js-tooltip" title="345 Tweets" href="https://twitter.com/JohnRoseTweets" data-element-term="tweet_stats">
                                                 <span class="ProfileCardStats-statLabel u-block">Tweets</span>
@@ -2512,21 +2820,27 @@ right > TweetBoxToolbar-tweetButton tweet-button
 
         <div class="js-tweet-text-container">
             
-            <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en" id="my1">All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then ${post.post_msg}
+            <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en" id="my1">
+<!--                All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then-->
+                ${post.post_msg}
                 <p style="display:none" class="postid">${post.post_id}</p>
                 <p  class="userid">${post.userid}</p>
-                    <div id="anchor1"></div>
-                    <b onclick="WD('${post.group1}')">Group1 </b>
-                    <b onclick="WD('${post.group2}')">Group2 </b>
+                <span class="myspan">Testing my span</span>
+                
+                <input type="hidden" path="id" />
+                    <div class="anchor1"></div>
+<!--                    <b onclick="WD('${post.group1}')">Group1 </b>
+                    <b onclick="WD('${post.group2}')">Group2 </b>-->
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
 <!--<a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>#</s>-->
 <a href="#" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059" onclick="WD('${post.group1}')"><s>#</s>
-    <b class="group1 mysubMenu" onclick="WD('${post.group1}')"> ${post.group1}  </b>
+    <b class="group1 mysubMenu" onclick="WD('${post.group1}')">${post.group1}  </b>
 </a> 
     
     
 <a href="#" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr" onclick="WD('${post.group2}')"><s>#</s>
     <b class="group2 mysubMenu" onclick="WD('${post.group2}')">${post.group2}</b>
+    
 </a> 
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand">-->
                 <a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
@@ -2615,13 +2929,17 @@ image is commented
                 </span>
                 <span class="ProfileTweet-action--favorite u-hiddenVisually">
                     <span class="ProfileTweet-actionCount" data-tweet-stat-count="808">
-                        <span class="ProfileTweet-actionCountForAria" id="profile-tweet-action-favorite-count-aria-973348886512328704" data-aria-label-part="0">808 likes</span>
+                        <span class="ProfileTweet-actionCountForAria" id="profile-tweet-action-favorite-count-aria-973348886512328704" data-aria-label-part="0">808 likes ${post.support_count}</span>
                     </span>
                 </span>
             </div>
 
           <div class="ProfileTweet-actionList js-actions" role="group" aria-label="Tweet actions">
+<!--              <p class="myajax">hi this is parana</p>
+              <div class="myajaxclass">div4</div>-->
               <div class="ProfileTweet-action ProfileTweet-action--reply">
+<!--                  <p class="myajax">hi this is parana</p>
+                  <div class="myajaxclass">div2</div>-->
 <!--                  <button onclick ="find('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Reply">
                           <span class="Icon Icon--medium Icon--reply"></span>
@@ -2631,15 +2949,21 @@ image is commented
                           <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">24</span>
                       </span>
                   </button>-->
-                  <button onclick ="findSend('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
+                <!--<BUTTON CHANGED TO SPAN>-->
+                  <span onclick ="findSend('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Reply">
                           <span class="Icon Icon--medium Icon--reply"></span>
                           <span class="u-hiddenVisually">Reply</span>
                       </div>
-                      <span class="ProfileTweet-actionCount ">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">Support</span>
+                      <span class="ProfileTweet-actionCount ">                                               
+                          <span class="ProfileTweet-actionCountForPresentation support" aria-hidden="true">Support${post.support_count}</span>
+                          <p class="myajax">hi this is parana</p>
+<!--                          <div class="myajaxclass">div12</div>-->
+                              
                       </span>
-                  </button>
+                  </span>
+                          <p class="myajax">hi this is parana</p>
+                          
               </div>
 
               <div class="ProfileTweet-action ProfileTweet-action--retweet js-toggleState js-toggleRt">
@@ -2653,23 +2977,24 @@ image is commented
                       </span>
 
                   </button>-->
-                   <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">
+<!--                   <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">-->
+                   <span class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Retweet">
                           <span class="Icon Icon--medium Icon--retweet"></span>
                           <span class="u-hiddenVisually">Retweet</span>
                       </div>
                       <span class="ProfileTweet-actionCount">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">No Support 55</span>
+                          <span class="ProfileTweet-actionCountForPresentation nonsupport" aria-hidden="true">${post.not_support_count}No Support 55</span>
                       </span>
 
-                  </button>
+                  </span>
                   <button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button">
                       <div class="IconContainer js-tooltip" title="Undo retweet">
                           <span class="Icon Icon--medium Icon--retweet"></span>
                           <span class="u-hiddenVisually">Retweeted</span>
                       </div>
                       <span class="ProfileTweet-actionCount">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">NO SUPPORT 55</span>
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">NO SUPPORT 55 ${post.not_support_count}</span>
                       </span>
 
                   </button>
@@ -2684,20 +3009,22 @@ image is commented
                           <span class="u-hiddenVisually">Like</span>
                       </div>
                       <span class="ProfileTweet-actionCount" data-tweet-stat-count="808">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">Undecided</span>
+                          <span class="ProfileTweet-actionCountForPresentation neutral" aria-hidden="true">neutral ${post.neutral_count}</span>
                       </span>
 
-                  </button><button class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">
+                  </button>
+<!--                      <button class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">-->
+                      <span class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">
                       <div class="IconContainer js-tooltip" title="Undo like">
                           <span role="presentation" class="Icon Icon--heart Icon--medium"></span>
                           <div class="HeartAnimation"></div>
                           <span class="u-hiddenVisually">Liked</span>
                       </div>
                       <span class="ProfileTweet-actionCount" data-tweet-stat-count="808">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">Undecided </span>
+                          <span class="ProfileTweet-actionCountForPresentation neutral" aria-hidden="true">Neutral </span>
                       </span>
 
-                  </button>
+                  </span>
               </div>
 
 
@@ -2758,7 +3085,7 @@ image is commented
                      <div class="content">  
 
 
-        <div class="stream-item-header">
+        <div class="stream-item-header">            
             <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="https://twitter.com/Petra_Kvitova" data-user-id="533202479">
 <!--                <img class="avatar js-action-profile-avatar" src="ADMvYXZc_bigger.jpg" alt="">-->
                 <span class="FullNameGroup">
@@ -2835,7 +3162,12 @@ image is commented
 
         <div class="js-tweet-text-container">
             <p>${post.post_msg}</p>
-            <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en">All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then 
+            <p style="display:none" class="postid">${post.post_id}</p>
+                <p  class="userid">${post.userid}</p>
+                    <div class="anchor1"></div>
+            <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en">
+                <input type="hidden" path="id" />
+<!--                All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then -->
                 
             
 <!--                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> -->
@@ -2925,35 +3257,39 @@ image is commented
                 </span>
                 <span class="ProfileTweet-action--favorite u-hiddenVisually">
                     <span class="ProfileTweet-actionCount" data-tweet-stat-count="808">
-                        <span class="ProfileTweet-actionCountForAria" id="profile-tweet-action-favorite-count-aria-973348886512328704" data-aria-label-part="0">808 likes</span>
+                        <span class="ProfileTweet-actionCountForAria" id="profile-tweet-action-favorite-count-aria-973348886512328704" data-aria-label-part="0">808 likes ${post.support_count}</span>
                     </span>
                 </span>
             </div>
 
           <div class="ProfileTweet-actionList js-actions" role="group" aria-label="Tweet actions">
               <div class="ProfileTweet-action ProfileTweet-action--reply">
-                  <button class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
+<!--                  onclick ="findSend('js-tweet-text-container',this)" is added to button -->
+<!--                    <span  onclick ="findSend('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">-->
+                  <span  onclick ="findSend('js-tweet-text-container',this)" class="ProfileTweet-actionButton js-actionButton js-actionReply" data-modal="ProfileTweet-reply" type="button" aria-describedby="profile-tweet-action-reply-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Reply">
                           <span class="Icon Icon--medium Icon--reply">Support</span>
                           <span class="u-hiddenVisually">Reply</span>
                       </div>
                       <span class="ProfileTweet-actionCount ">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">24</span>
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">24 ${post.support_count}</span>
                       </span>
-                  </button>
+                  </span>
               </div>
 
               <div class="ProfileTweet-action ProfileTweet-action--retweet js-toggleState js-toggleRt">
-                  <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">
+<!--                  <button class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">-->
+                  <span class="ProfileTweet-actionButton  js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button" aria-describedby="profile-tweet-action-retweet-count-aria-973348886512328704">
                       <div class="IconContainer js-tooltip" title="Retweet">
                           <span class="Icon Icon--medium Icon--retweet">Not Support</span>
                           <span class="u-hiddenVisually">Retweet</span>
                       </div>
                       <span class="ProfileTweet-actionCount">
-                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">55</span>
+                          <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">55 ${post.not_support_count}</span>
                       </span>
 
-                  </button><button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button">
+                  </span>
+                      <button class="ProfileTweet-actionButtonUndo js-actionButton js-actionRetweet" data-modal="ProfileTweet-retweet" type="button">
                       <div class="IconContainer js-tooltip" title="Undo retweet">
                           <span class="Icon Icon--medium Icon--retweet"></span>
                           <span class="u-hiddenVisually">Retweeted</span>
@@ -2977,7 +3313,9 @@ image is commented
                           <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">808</span>
                       </span>
 
-                  </button><button class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">
+                  </button>
+                  <span class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">
+<!--                  <button class="ProfileTweet-actionButtonUndo ProfileTweet-action--unfavorite u-linkClean js-actionButton js-actionFavorite" type="button">-->
                       <div class="IconContainer js-tooltip" title="Undo like">
                           <span role="presentation" class="Icon Icon--heart Icon--medium"></span>
                           <div class="HeartAnimation"></div>
@@ -2987,7 +3325,7 @@ image is commented
                           <span class="ProfileTweet-actionCountForPresentation" aria-hidden="true">808</span>
                       </span>
 
-                  </button>
+                  </span>
               </div>
 
 
