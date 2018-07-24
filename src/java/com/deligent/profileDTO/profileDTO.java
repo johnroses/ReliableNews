@@ -72,24 +72,28 @@ public class profileDTO implements Serializable{
     
     @Column
     private String favoriteplace;
+    @Column
+    private String job;
+    @Column
+    private String job_department;
 
-    @Column
-    private String support;
-
-    @Column
-    private String not_support;
-
-    @Column
-    private String  neutral;
-    
-    @Column
-    private int support_count;
-    
-    @Column
-    private int not_support_count;
-    
-    @Column
-    private int neutral_count;
+//    @Column
+//    private String support;
+//
+//    @Column
+//    private String not_support;
+//
+//    @Column
+//    private String  neutral;
+//    
+//    @Column
+//    private int support_count;
+//    
+//    @Column
+//    private int not_support_count;
+//    
+//    @Column
+//    private int neutral_count;
     
     public int getId() {
         return id;
@@ -198,54 +202,72 @@ public class profileDTO implements Serializable{
     public void setFavoriteplace(String favoriteplace) {
         this.favoriteplace = favoriteplace;
     }
-
-    public String getSupport() {
-        return support;
+     public String getJob() {
+        return job;
     }
 
-    public void setSupport(String support) {
-        this.support = support;
-    }    
-
-    public String getNot_support() {
-        return not_support;
+    public void setJob(String job) {
+        this.job = job;
     }
 
-    public void setNot_support(String not_support) {
-        this.not_support = not_support;
+    public String getJob_department() {
+        return job_department;
     }
 
-    public String getNeutral() {
-        return neutral;
+    public void setJob_department(String job_department) {
+        this.job_department = job_department;
     }
+    
 
-    public void setNeutral(String neutral) {
-        this.neutral = neutral;
-    }
+//    public String getSupport() {
+//        return support;
+//    }
+//
+//    public void setSupport(String support) {
+//        this.support = support;
+//    }    
+//
+//    public String getNot_support() {
+//        return not_support;
+//    }
+//
+//    public void setNot_support(String not_support) {
+//        this.not_support = not_support;
+//    }
+//
+//    public String getNeutral() {
+//        return neutral;
+//    }
+//
+//    public void setNeutral(String neutral) {
+//        this.neutral = neutral;
+//    }
+//
+//    public int getSupport_count() {
+//        return support_count;
+//    }
+//
+//    public void setSupport_count(int support_count) {
+//        this.support_count = support_count;
+//    }
+//
+//    public int getNot_support_count() {
+//        return not_support_count;
+//    }
+//
+//    public void setNot_support_count(int not_support_count) {
+//        this.not_support_count = not_support_count;
+//    }
+//
+//    public int getNeutral_count() {
+//        return neutral_count;
+//    }
+//
+//    public void setNeutral_count(int neutral_count) {
+//        this.neutral_count = neutral_count;
+//    }
 
-    public int getSupport_count() {
-        return support_count;
-    }
-
-    public void setSupport_count(int support_count) {
-        this.support_count = support_count;
-    }
-
-    public int getNot_support_count() {
-        return not_support_count;
-    }
-
-    public void setNot_support_count(int not_support_count) {
-        this.not_support_count = not_support_count;
-    }
-
-    public int getNeutral_count() {
-        return neutral_count;
-    }
-
-    public void setNeutral_count(int neutral_count) {
-        this.neutral_count = neutral_count;
-    }
+   
     
 
     
