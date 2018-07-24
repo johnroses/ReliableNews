@@ -140,12 +140,13 @@ function WD(item) {
     </script>-->
     
 <script>
-    $(document).ready(function () {
-        $("span5").click(function(){
-           alert("Para"); 
-        });
-        
-    }); 
+//    $(document).ready(function () {
+//        $("span5").click(function(){
+//           alert("Para"); 
+//        });
+//        
+//    }); 
+
 </script>
 <script>
 
@@ -766,6 +767,9 @@ break;
 
 
 <script>
+    window.onclick=function(){
+       
+    }
 window.onload=function(){
 
     var l=document.getElementsByClassName('u-textInheritColor js-nav');
@@ -775,7 +779,24 @@ window.onload=function(){
 //var xx1=document.getElementsByClassName('u-linkComplex-target')[0].innerHTML="fdf";
 //document.getElementById("hidetweet").style.display="none";
 
+//function createId(){
+  
+     var postElements=document.querySelectorAll('.postid');
+     var supportElements=document.querySelectorAll('.support');
+     var neutralElements=document.querySelectorAll('.neutral');
+     var nonsupportElements=document.querySelectorAll('.nonsupport');
+    //alert(postElements.length+" leng");
+    for(var i=0;i<postElements.length;i++){
+        postElements[i].id='stream-item-tweet-'+i;
+        supportElements[i].id='support-button'+i;
+        neutralElements[i].id='neutral-button'+i;
+        nonsupportElements[i].id='nonsupport-button'+i;       
+    }
+    
+        
+
 };
+
 function fun(){
 var d=document.getElementById("tweet-box-home-timeline");
 
@@ -2737,8 +2758,10 @@ alert("hi here");
              <c:forEach var="post" items="${listMsg}">
              <!-- onscroll="function()"-->
 
-             <li class="js-stream-item stream-item stream-item
-                 " data-item-id="973348886512328704" id="stream-item-tweet-973348886512328704" data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{&quot;suggestion_type&quot;:&quot;RankedTimelineTweet&quot;,&quot;controller_data&quot;:&quot;CwABAAAAMzAwNDU3MTg5MDAyNWExYjcuYjgwMDljOGE2NjA2MDQ0MTw6ZDVhMTVkNmJkMDA4ZjNiZQA=&quot;},&quot;tweet_ids&quot;:&quot;973348886512328704&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">
+<!--             <li class="js-stream-item stream-item stream-item postid
+                 " data-item-id="973348886512328704" id="stream-item-tweet-973348886512328704" data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{&quot;suggestion_type&quot;:&quot;RankedTimelineTweet&quot;,&quot;controller_data&quot;:&quot;CwABAAAAMzAwNDU3MTg5MDAyNWExYjcuYjgwMDljOGE2NjA2MDQ0MTw6ZDVhMTVkNmJkMDA4ZjNiZQA=&quot;},&quot;tweet_ids&quot;:&quot;973348886512328704&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">-->
+             <li class="js-stream-item stream-item stream-item postid
+                 " data-item-id="973348886512328704"  data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{&quot;suggestion_type&quot;:&quot;RankedTimelineTweet&quot;,&quot;controller_data&quot;:&quot;CwABAAAAMzAwNDU3MTg5MDAyNWExYjcuYjgwMDljOGE2NjA2MDQ0MTw6ZDVhMTVkNmJkMDA4ZjNiZQA=&quot;},&quot;tweet_ids&quot;:&quot;973348886512328704&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">
 
                  <div class="tweet js-stream-tweet js-actionable-tweet js-profile-popup-actionable dismissible-content original-tweet js-original-tweet has-cards dismissible-content has-content favorited" data-tweet-id="973348886512328704" data-item-id="973348886512328704" data-permalink-path="/Petra_Kvitova/status/973348886512328704" data-conversation-id="973348886512328704" data-tweet-nonce="973348886512328704-8cadb0a7-1587-402c-b5c6-5ac7d9041c9c" data-tweet-stat-initialized="true" data-screen-name="Petra_Kvitova" data-name="Petra Kvitova" data-user-id="533202479" data-you-follow="true" data-follows-you="false" data-you-block="false" data-mentions="MiamiOpen" data-tagged="BNPPARIBASOPEN MiamiOpen" data-reply-to-users-json="[{&quot;id_str&quot;:&quot;533202479&quot;,&quot;screen_name&quot;:&quot;Petra_Kvitova&quot;,&quot;name&quot;:&quot;Petra Kvitova&quot;,&quot;emojified_name&quot;:{&quot;text&quot;:&quot;Petra Kvitova&quot;,&quot;emojified_text_as_html&quot;:&quot;Petra Kvitova&quot;}},{&quot;id_str&quot;:&quot;71048059&quot;,&quot;screen_name&quot;:&quot;MiamiOpen&quot;,&quot;name&quot;:&quot;Miami Open&quot;,&quot;emojified_name&quot;:{&quot;text&quot;:&quot;Miami Open&quot;,&quot;emojified_text_as_html&quot;:&quot;Miami Open&quot;}},{&quot;id_str&quot;:&quot;30017071&quot;,&quot;screen_name&quot;:&quot;BNPPARIBASOPEN&quot;,&quot;name&quot;:&quot;BNP Paribas Open&quot;,&quot;emojified_name&quot;:{&quot;text&quot;:&quot;BNP Paribas Open&quot;,&quot;emojified_text_as_html&quot;:&quot;BNP Paribas Open&quot;}}]" data-disclosure-type="" data-has-cards="true" data-component-context="suggest_ranked_timeline_tweet">
 
@@ -2957,6 +2980,7 @@ image is commented
                           <span class="u-hiddenVisually">Reply</span>
                       </div>
                       <span class="ProfileTweet-actionCount ">                                               
+<!--                          <span class="ProfileTweet-actionCountForPresentation support" aria-hidden="true">Support${post.support_count}</span>-->
                           <span class="ProfileTweet-actionCountForPresentation support" aria-hidden="true">Support${post.support_count}</span>
                           <p class="myajax">hi this is parana</p>
 <!--                          <div class="myajaxclass">div12</div>-->
@@ -3075,7 +3099,8 @@ image is commented
 <!--      single items can be inserted not using DTO-->
       
       <c:forEach var="post" items="${listMs}">
-          <li  sclass="js-stream-item stream-item stream-item " data-item-id="973348886512328704" id="sample" data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{&quot;suggestion_type&quot;:&quot;RankedTimelineTweet&quot;,&quot;controller_data&quot;:&quot;CwABAAAAMzAwNDU3MTg5MDAyNWExYjcuYjgwMDljOGE2NjA2MDQ0MTw6ZDVhMTVkNmJkMDA4ZjNiZQA=&quot;},&quot;tweet_ids&quot;:&quot;973348886512328704&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">
+<!--          <li  sclass="js-stream-item stream-item stream-item postid" data-item-id="973348886512328704" id="sample" data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{&quot;suggestion_type&quot;:&quot;RankedTimelineTweet&quot;,&quot;controller_data&quot;:&quot;CwABAAAAMzAwNDU3MTg5MDAyNWExYjcuYjgwMDljOGE2NjA2MDQ0MTw6ZDVhMTVkNmJkMDA4ZjNiZQA=&quot;},&quot;tweet_ids&quot;:&quot;973348886512328704&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">-->
+          <li  sclass="js-stream-item stream-item stream-item postid" data-item-id="973348886512328704"  data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{&quot;suggestion_type&quot;:&quot;RankedTimelineTweet&quot;,&quot;controller_data&quot;:&quot;CwABAAAAMzAwNDU3MTg5MDAyNWExYjcuYjgwMDljOGE2NjA2MDQ0MTw6ZDVhMTVkNmJkMDA4ZjNiZQA=&quot;},&quot;tweet_ids&quot;:&quot;973348886512328704&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">
 <!--      <li class="js-stream-item stream-item stream-item " data-item-id="973348886512328704" id="stream-item-tweet-973348886512328704" data-item-type="tweet" data-suggestion-json="{&quot;suggestion_details&quot;:{&quot;suggestion_type&quot;:&quot;RankedTimelineTweet&quot;,&quot;controller_data&quot;:&quot;CwABAAAAMzAwNDU3MTg5MDAyNWExYjcuYjgwMDljOGE2NjA2MDQ0MTw6ZDVhMTVkNmJkMDA4ZjNiZQA=&quot;},&quot;tweet_ids&quot;:&quot;973348886512328704&quot;,&quot;scribe_component&quot;:&quot;tweet&quot;}">-->
 
                  <div class="tweet js-stream-tweet js-actionable-tweet js-profile-popup-actionable dismissible-content original-tweet js-original-tweet has-cards dismissible-content has-content favorited" data-tweet-id="973348886512328704" data-item-id="973348886512328704" data-permalink-path="/Petra_Kvitova/status/973348886512328704" data-conversation-id="973348886512328704" data-tweet-nonce="973348886512328704-8cadb0a7-1587-402c-b5c6-5ac7d9041c9c" data-tweet-stat-initialized="true" data-screen-name="Petra_Kvitova" data-name="Petra Kvitova" data-user-id="533202479" data-you-follow="true" data-follows-you="false" data-you-block="false" data-mentions="MiamiOpen" data-tagged="BNPPARIBASOPEN MiamiOpen" data-reply-to-users-json="[{&quot;id_str&quot;:&quot;533202479&quot;,&quot;screen_name&quot;:&quot;Petra_Kvitova&quot;,&quot;name&quot;:&quot;Petra Kvitova&quot;,&quot;emojified_name&quot;:{&quot;text&quot;:&quot;Petra Kvitova&quot;,&quot;emojified_text_as_html&quot;:&quot;Petra Kvitova&quot;}},{&quot;id_str&quot;:&quot;71048059&quot;,&quot;screen_name&quot;:&quot;MiamiOpen&quot;,&quot;name&quot;:&quot;Miami Open&quot;,&quot;emojified_name&quot;:{&quot;text&quot;:&quot;Miami Open&quot;,&quot;emojified_text_as_html&quot;:&quot;Miami Open&quot;}},{&quot;id_str&quot;:&quot;30017071&quot;,&quot;screen_name&quot;:&quot;BNPPARIBASOPEN&quot;,&quot;name&quot;:&quot;BNP Paribas Open&quot;,&quot;emojified_name&quot;:{&quot;text&quot;:&quot;BNP Paribas Open&quot;,&quot;emojified_text_as_html&quot;:&quot;BNP Paribas Open&quot;}}]" data-disclosure-type="" data-has-cards="true" data-component-context="suggest_ranked_timeline_tweet">
