@@ -159,7 +159,8 @@ function WD(item) {
          var className1=$(this).attr('class');
          
         // $( "button" ).index( this ) 
-                 var spanid=$( "span").index( this );
+                 var spanid=
+                         alert($( "span").index( this ));
                  //alert(spanid);
                 // $(spanid).append("HIIII");
     //$('button').click(function() {
