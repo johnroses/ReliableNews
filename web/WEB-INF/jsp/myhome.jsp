@@ -374,7 +374,7 @@ var po=$("#tweet-box-home-timeline").text();
         <title>My home</title>
 
 
-        <script>
+<!--        <script>
 var count=0;
             window.onscroll = function () {
                 //alert("hi");
@@ -702,7 +702,7 @@ span11.className="Icon Icon--medium Icon--dm";
             };
 
             //controller 
-        </script>
+        </script>-->
 
 <!--        <script>
             $(document).ready(function () {
@@ -2042,22 +2042,22 @@ right > TweetBoxToolbar-tweetButton tweet-button
                 </button>
 
             </span>
-    <form method="POST" id="f1">
+<!--    <form method="POST" id="f1">
         <input type="text" id="user">
         <button id="but"  type="button" value="submit">MY For POST</button>
-</form>
+</form>-->
             <button id="tww" class="tweet-action EdgeButton EdgeButton--primary js-tweet-btn"  type="button"  >POST</button>
             
-            <p id="para">paragraph</p>
+<!--            <p id="para">paragraph</p>-->
             
             
             
-            <button id="hidetweet" class="tweet-action disabled EdgeButton EdgeButton--primary js-tweet-btn" type="button" disabled="disabled">
+<!--            <button id="hidetweet" class="tweet-action disabled EdgeButton EdgeButton--primary js-tweet-btn" type="button" disabled="disabled">
                 <span class="button-text tweeting-text">
                     Tweet
                 </span>
                 <span class="button-text replying-text">Reply</span>
-            </button>
+            </button>-->
 
         </div>
         
@@ -2079,6 +2079,8 @@ right > TweetBoxToolbar-tweetButton tweet-button
      <div class="stream" >
          <!-- onscroll="function()"-->
          <ol class="stream-items js-navigable-stream" id="stream-items-id"  >
+             
+             <c:forEach var="msg" items="${listMsg}">
              <!-- onscroll="function()"-->
 
              <li class="js-stream-item stream-item stream-item
@@ -2166,12 +2168,17 @@ right > TweetBoxToolbar-tweetButton tweet-button
 
 
         <div class="js-tweet-text-container">
-            <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en">All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then <table>
+            <p>${msg.msg}</p>
+            <p class="TweetTextSize  js-tweet-text tweet-text" data-aria-label-part="0" lang="en">All good things come to an end. Congrats to my opponent who played a great match. We'll spend a few more days in paradise and then 
+            <table>
             <td id="tbod" >${username}</td>
                 <td>${pName}</td>
                 
                 
-            </table> <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>@</s><b>MiamiOpen</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>bnppo18</b></a> <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand"><a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
+            </table>
+                <p>${msg.id}</p>
+            <p>${msg.msg}</p>
+                <img class="Emoji Emoji--forText" src="Twitter_files/1f51c.png" draggable="false" alt="ðŸ”œ" title="Soon with rightwards arrow above" aria-label="Emoji: Soon with rightwards arrow above"> <a href="https://twitter.com/MiamiOpen" class="twitter-atreply pretty-link js-nav" dir="ltr" data-mentioned-user-id="71048059"><s>@</s><b>MiamiOpen</b></a> <a href="https://twitter.com/hashtag/bnppo18?src=hash" data-query-source="hashtag_click" class="twitter-hashtag pretty-link js-nav" dir="ltr"><s>#</s><b>bnppo18</b></a> <img class="Emoji Emoji--forText" src="Twitter_files/270c.png" draggable="false" alt="âœŒï¸" title="Victory hand" aria-label="Emoji: Victory hand"><a href="https://t.co/jB8buu8MLo" class="twitter-timeline-link u-hidden" data-pre-embedded="true" dir="ltr">pic.twitter.com/jB8buu8MLo</a></p>
         </div>
 
 
@@ -2336,7 +2343,7 @@ right > TweetBoxToolbar-tweetButton tweet-button
           </div>
 
       </li>
-
+</c:forEach>
 
                                 </ol>
                             </div></body>
